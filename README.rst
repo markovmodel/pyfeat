@@ -3,7 +3,8 @@ pyfeat
 ******
 
 The python free energy analysis toolkit.
-**This code is under very heavy development**
+
+**This code is under very heavy development!**
 
 ***Note***
 
