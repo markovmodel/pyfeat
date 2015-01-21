@@ -1,20 +1,21 @@
-# pyfeat
 ******
 pyfeat
 ******
 
 The python free energy analysis toolkit.
-
+**This code is under very heavy development**
 
 ***Note***
+
 This is the space for the new release of pyfeat.
 A completely restructured and improved version, will be released shortly.
 It will include some new features such as:
+
 - The use of pytram
 - An improved API
 - New Free Energy Algorithms
 
-**This code is under very heavy development**
+
 
 
 Authors
