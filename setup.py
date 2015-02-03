@@ -31,10 +31,12 @@ setup(
     author='The pyfeat team',
     author_email='pyfeat@lists.fu-berlin.de',
     license='Simplified BSD License',
-    setup_requires=[ 'numpy>=1.7.1', 'cython>=0.15', 'setuptools>=0.6' ],
+    setup_requires=[ 'numpy>=1.7.1', 'cython>=0.15', 'setuptools>=0.6', 'pytram>=0.1' ],
     tests_require=[ 'numpy>=1.7.1' ],
     install_requires=[ 'numpy>=1.7.1' ],
     packages=[
-            'pyfeat'
+            'pyfeat',
+            'pyfeat.reader',
+            'pyfeat.forge'
         ]
 )
