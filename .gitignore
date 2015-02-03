@@ -5,3 +5,6 @@ build
 pyfeat.egg-info
 setup.cfg
 doc/_build
+.eggs/
+*.ipynb
+*.dat
