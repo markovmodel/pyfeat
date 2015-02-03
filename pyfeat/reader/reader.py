@@ -1,0 +1,20 @@
+r"""
+
+==============
+Reader
+==============
+
+.. moduleauthor:: Antonia Mey <antonia.mey@fu-berlin.de>
+
+"""
+
+import pytram as pt
+import numpy as np
+
+class Reader( pt.Reader ):
+    """I am the data forge
+    
+    """
+    def __init__( self, files, b_K_i_file=None, kT_file=None, skiprows=0, maxlength=None, verbose=False ):
+        super( Reader, self ).__init__( files, b_K_i_file=None, kT_file=None, skiprows=0, maxlength=None, verbose=False )
+    
