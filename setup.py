@@ -37,6 +37,7 @@ setup(
     packages=[
             'pyfeat',
             'pyfeat.reader',
-            'pyfeat.forge'
+            'pyfeat.forge',
+            'pyfeat.wham'
         ]
 )
