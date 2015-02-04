@@ -76,7 +76,6 @@ class WHAM( object ):
             if finc <ftol:
                 break
         if finc>=ftol:
-            print "We need to incorporate a not converged warning"
             raise NotConvergedWarning( "WHAM", finc )
         self.pi_i /= self.pi_i.sum()
             
