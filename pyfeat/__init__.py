@@ -7,3 +7,6 @@ from .forge import Forge
 
 # raise WHAM class onto pyfeat package leve
 from .wham import WHAM
+
+# raise the API function onto the pyfeat package level
+from .api import wham, wham_me

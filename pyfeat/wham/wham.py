@@ -64,7 +64,6 @@ class WHAM( object ):
             print "# %25s %25s" % ( "[iteration step]", "[relative increment]" )
         if np.all( self.pi_i == 0.0 ):
             self.pi_i[:] = self._p_step()
-            print self.pi_i
         for i in xrange( maxiter ):
             f_new = self._f_step()
             nonzero = self._f_K.nonzero()
