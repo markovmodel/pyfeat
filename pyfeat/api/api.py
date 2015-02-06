@@ -11,6 +11,8 @@ API for the pyfeat package
 
 from ..wham import WHAM
 from pytram import NotConvergedWarning, ExpressionError
+from ..reader import Reader
+from ..forge import Forge
 
 
 
@@ -85,4 +87,35 @@ def wham( forge, maxiter=100, ftol=1.0E-5, verbose=False ):
         wham estimator object with optimised unbiased stationary probabilities
     """
     return wham_me( forge.N_K_i, forge.b_K_i, maxiter=maxiter, ftol=ftol, verbose=verbose )
+    
+def forge_data( trajs, b_K_i=None, kT_K=None, kT_target=None ):
+    forge = Forge( trajs, b_ktrajs, b_K_i, kT_K, kT_target)
+    return forge
+    
+def read_files (files, b_K_i_file=None, kT_file=None, skiprows=0, maxlength=None, verbose=False ):
+    r"""
+    API function for reading files 
+    
+    Parameters
+    ----------
+    files : list of strings
+        file names to read
+    b_K_i_file : string (optional)
+        file name for discrete estimator data
+    kT_file : string (optional)
+        file name for kT value listing
+    skiprows : int (optional)
+        specify the number of skipped lines when reading the trajectory files
+    maxlength : int (optional)
+        maximum number of data points read from file
+    verbose : boolean (optional)
+        verbose output during the reading/building process
+    
+    Returns
+    -------
+    data : pyfeat.data.Data object
+    	information container for further analysis
+    """
+    reader = Reader(files, b_K_i_file, kT_file, skiprows, maxlength, verbose)
+    return reader 
     
