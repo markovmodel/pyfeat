@@ -12,7 +12,7 @@ import pytram as pt
 import numpy as np
 
 
-class DTRAM( Object ):
+class DTRAM( object ):
     r"""
     I am the dTRAM wrapper
     """
