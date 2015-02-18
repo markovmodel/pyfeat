@@ -6,7 +6,10 @@ from .reader import Reader
 from .forge import Forge
 
 # raise WHAM class onto pyfeat package leve
-from .wham import WHAM
+from .estimator import WHAM
+
+# raise WHAM class onto pyfeat package leve
+from .estimator import XTRAM
 
 # raise the API function onto the pyfeat package level
 from .api import wham, wham_me
