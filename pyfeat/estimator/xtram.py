@@ -12,9 +12,9 @@ import pytram as pt
 import numpy as np
 
 
-class XTRAM( pt.XTRAM ):
+class XTRAM( Object ):
     r"""
-    I am the xTRAM estimator
+    I am the xTRAM wrapper
     """
     def __init__( self, C_K_ij, u_I_x, T_x, M_x, N_K_i, target = 0, verbose = False ):
 
