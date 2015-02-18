@@ -1,8 +1,8 @@
 r"""
 
-==============
+======
 Reader
-==============
+======
 
 .. moduleauthor:: Antonia Mey <antonia.mey@fu-berlin.de>
 
