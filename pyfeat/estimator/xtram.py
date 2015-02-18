@@ -16,7 +16,7 @@ class XTRAM( pt.XTRAM ):
     r"""
     I am the xTRAM estimator
     """
-    def __init__( self, C_K_ij, u_I_x, T_x, M_x, N_K_i, N_K, target = 0, verbose = False ):
+    def __init__( self, C_K_ij, u_I_x, T_x, M_x, N_K_i, target = 0, verbose = False ):
 
         r"""
         Initialize the XTRAM object
@@ -41,7 +41,8 @@ class XTRAM( pt.XTRAM ):
         verbose : Boolean
             Be loud and noisy
         """
-        self._xtram_obj = pt.XTRAM( C_K_ij = C_K_ij, u_I_x = u_I_x, T_x = T_x, M_x = M_x, N_K_i = N_K_i, target = 0, verbose = False )
+        N_K = np.sum(N_K_i, axis=1)
+        self._xtram_obj = pt.XTRAM( C_K_ij = C_K_ij, u_I_x = u_I_x, T_x = T_x, M_x = M_x, N_K_i = N_K_i, N_K = N_K target = 0, verbose = False )
 
 
      def sc_iteration( self , ftol=10e-4, maxiter = 10, verbose = False):
@@ -61,7 +62,7 @@ class XTRAM( pt.XTRAM ):
         
     @property
     def f_K_i( self ):
-        raise NotImplementedError("Subclasses should implement this!")
+        return -np.log(self.pi_K_i)
         
     @property
     def f_i( self ):
