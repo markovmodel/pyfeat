@@ -39,7 +39,7 @@ class XTRAM( object ):
             target state for which pi_i should be computed
             default : 0
         """
-        self._xtram_obj = pt.XTRAM( C_K_ij = C_K_ij, u_I_x = u_I_x, T_x = T_x, M_x = M_x, N_K_i = N_K_i, target = 0 )
+        self._xtram_obj = pt.XTRAM( C_K_ij, u_I_x, T_x, M_x, N_K_i, target = 0 )
 
 
     def sc_iteration( self , ftol=10e-4, maxiter = 10, verbose = False):
