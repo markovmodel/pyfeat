@@ -9,7 +9,7 @@ API for the pyfeat package
 
 """
 
-from ..wham import WHAM
+from ..estimator import WHAM
 from pytram import NotConvergedWarning, ExpressionError
 from ..reader import Reader
 from ..forge import Forge
