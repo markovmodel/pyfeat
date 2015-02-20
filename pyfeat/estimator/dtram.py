@@ -10,6 +10,7 @@ dTRAM estimator wrapper
 
 import pytram as pt
 import numpy as np
+from pytram import NotConvergedWarning, ExpressionError
 
 
 class DTRAM( object ):
@@ -27,7 +28,10 @@ class DTRAM( object ):
         b_K_i : numpy.ndarray( shape=(T,M), dtype=numpy.float64 )
             bias energies in the T thermodynamic and M discrete Markov states
         """
+
         self._dtram_obj = pt.DTRAM( C_K_ij, b_K_i )
+        self.n_therm_states = np.shape(b_K_i)[0]
+        self.n_markov_states = np.shape(b_K_i)[1]
 
 
     def sc_iteration( self , ftol=10e-4, maxiter=10, verbose=False ):
@@ -52,4 +56,21 @@ class DTRAM( object ):
     @property
     def f_i( self ):
         return -np.log(self.pi_i)
+    
+    @property
+    def n_therm_states( self ):
+        return self._n_therm_states
+    
+    @n_therm_states.setter
+    def n_therm_states( self, m ):
+        self._n_therm_states = m
+
+    @property
+    def n_markov_states( self ):
+        return self._n_markov_states
+        
+    @n_markov_states.setter
+    def n_markov_states( self, n ):
+        self._n_markov_states = n
+        
         
