@@ -8,3 +8,6 @@ doc/_build
 .eggs/
 *.ipynb
 *.dat
+.DS_Store
+*.egg
+dist
