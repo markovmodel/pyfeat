@@ -6,7 +6,6 @@ pyfeat.egg-info
 setup.cfg
 doc/_build
 .eggs/
-*.ipynb
 *.dat
 .DS_Store
 *.egg
