@@ -70,7 +70,7 @@ class WHAM( object ):
             self._f_K[:] = f_new[:]
             self._pi_i = self._p_step()
             if verbose:
-                print "  %6d %10.3e" % ( i+1, finc )
+                print "%25d %25.12e" % ( i+1, finc )
             if finc <ftol:
                 break
         if finc>=ftol:
