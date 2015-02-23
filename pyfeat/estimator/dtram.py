@@ -33,47 +33,33 @@ class DTRAM( object ):
         self.n_therm_states = np.shape(b_K_i)[0]
         self.n_markov_states = np.shape(b_K_i)[1]
 
-
     def sc_iteration( self , ftol=1.0e-15, maxiter=1000, verbose=False ):
          self._dtram_obj.sc_iteration( ftol=ftol, maxiter=maxiter, verbose=verbose )
-         
+
     @property
     def pi_i( self ):
         return self._dtram_obj.pi_i
-     
+
     @property
     def pi_K_i( self ):
         return self._dtram_obj.pi_K_i
-    
+
     @property
     def f_K( self ):
         return self._dtram_obj.f_K
-        
+
     @property
     def f_K_i( self ):
         return -np.log( self.pi_K_i )
-        
+
     @property
     def f_i( self ):
         return -np.log(self.pi_i)
 
-    # use dtram_obj's attribute
     @property
     def n_therm_states( self ):
-        return self._n_therm_states
-    
-    # don't use setters!
-    @n_therm_states.setter
-    def n_therm_states( self, m ):
-        self._n_therm_states = m
+        return self._dtram_obj.n_therm_states
 
-    # use dtram_obj's attribute
     @property
     def n_markov_states( self ):
-        return self._n_markov_states
-
-    # don't use setters!
-    @n_markov_states.setter
-    def n_markov_states( self, n ):
-        self._n_markov_states = n
-        
+        return self._dtram_obj.n_markov_states
