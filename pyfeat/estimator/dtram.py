@@ -4,7 +4,7 @@ r"""
 dTRAM estimator wrapper
 =======================
 
-.. moduleauthor:: Antonia Mey <antonia.mey@fu-berlin.de>
+.. moduleauthor:: Antonia Mey <antonia.mey@fu-berlin.de>, Christoph Wehmeyer <christoph.wehmeyer@fu-berlin.de>
 
 """
 
@@ -30,7 +30,7 @@ class DTRAM( object ):
         self._dtram_obj = pt.DTRAM( C_K_ij, b_K_i )
 
 
-    def sc_iteration( self , ftol=10e-4, maxiter=10, verbose=False ):
+    def sc_iteration( self , ftol=1.0e-15, maxiter=1000, verbose=False ):
          self._dtram_obj.sc_iteration( ftol=ftol, maxiter=maxiter, verbose=verbose )
          
     @property
@@ -47,9 +47,9 @@ class DTRAM( object ):
         
     @property
     def f_K_i( self ):
-        return -np.log(self.pi_K_i)
+        return -np.log( self.pi_K_i )
         
     @property
     def f_i( self ):
-        return -np.log(self.pi_i)
+        return -np.log( self.pi_i )
         
