@@ -56,19 +56,23 @@ class DTRAM( object ):
     @property
     def f_i( self ):
         return -np.log(self.pi_i)
-    
+
+    # use dtram_obj's attribute
     @property
     def n_therm_states( self ):
         return self._n_therm_states
     
+    # don't use setters!
     @n_therm_states.setter
     def n_therm_states( self, m ):
         self._n_therm_states = m
 
+    # use dtram_obj's attribute
     @property
     def n_markov_states( self ):
         return self._n_markov_states
-        
+
+    # don't use setters!
     @n_markov_states.setter
     def n_markov_states( self, n ):
         self._n_markov_states = n
