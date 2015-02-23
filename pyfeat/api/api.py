@@ -138,12 +138,14 @@ def dtram_me( C_K_ij, b_K_i, maxiter = 100, ftol = 1.0e-10, verbose = False ):
 #                                                                      #
 ########################################################################
 
-def dtram( forge, maxiter=100, ftol=1.0e-10, verbose= False ):
+def dtram( forge, lag = 1,  maxiter=100, ftol=1.0e-10, verbose= False ):
     r"""
     Parameters
     ----------
     forge : object
         data forge or container for pyfeat input data
+    lag : int
+        lagtime at which the countmatrix is estimated
     maxiter : int
         maximum number of SC iteration steps during the optimisation of the stationary probabilities
     ftol : float (> 0.0)
@@ -156,7 +158,7 @@ def dtram( forge, maxiter=100, ftol=1.0e-10, verbose= False ):
     dtram_obj : object
         dtram estimator object with optimised stationary properties
     """
-    return dtram_me( forge.get_C_K_ij, forge.b_K_i, maxiter = maxiter, ftol = ftol, verbose = verbose )
+    return dtram_me( forge.get_C_K_ij( lag), forge.b_K_i, maxiter = maxiter, ftol = ftol, verbose = verbose )
     
 ########################################################################
 #                                                                      #
@@ -164,7 +166,7 @@ def dtram( forge, maxiter=100, ftol=1.0e-10, verbose= False ):
 #                                                                      #
 ########################################################################
 def mbar_me():
-    Raise NotImplementedError('This api function has not been implemented yet')
+    raise NotImplementedError('This api function has not been implemented yet')
 
 ########################################################################
 #                                                                      #
@@ -172,7 +174,7 @@ def mbar_me():
 #                                                                      #
 ########################################################################
 def mbar():
-    Raise NotImplementedError('This api function has not been implemented yet')
+    raise NotImplementedError('This api function has not been implemented yet')
     
  
 ########################################################################
@@ -251,7 +253,7 @@ def xtram( forge, maxiter=100, ftol=1.0e-10, verbose= False ):
 #                                                                      #
 ########################################################################
 def tram_me():
-    Raise NotImplementedError('tram_me function has not been implemented yet')
+    raise NotImplementedError('tram_me function has not been implemented yet')
 
 ########################################################################
 #                                                                      #
@@ -259,7 +261,7 @@ def tram_me():
 #                                                                      #
 ########################################################################
 def tram():
-    Raise NotImplementedError('TRAM API function has not been implemented yet')
+    raise NotImplementedError('TRAM API function has not been implemented yet')
 
 
   
