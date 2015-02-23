@@ -26,18 +26,23 @@ setup(
             'Topic :: Scientific/Engineering :: Mathematics',
             'Topic :: Scientific/Engineering :: Physics'
         ],
-    keywords=[ 'MBAR', 'WHAM', 'free energy' ],
+    keywords=[ 'MBAR', 'WHAM', 'TRAM', 'free energy' ],
     url='http://github.com/markovmodel/pyfeat',
     author='The pyfeat team',
     author_email='pyfeat@lists.fu-berlin.de',
     license='Simplified BSD License',
     setup_requires=[ 'numpy>=1.7.1', 'cython>=0.15', 'setuptools>=0.6', 'pytram>=0.1' ],
-    tests_require=[ 'numpy>=1.7.1' ],
-    install_requires=[ 'numpy>=1.7.1' ],
+    tests_require=[ 'numpy>=1.7.1', 'pymbar==2.0' ],
+    install_requires=[ 'numpy>=1.7.1', 'pymbar==2.0' ],
     packages=[
             'pyfeat',
             'pyfeat.reader',
             'pyfeat.forge',
-            'pyfeat.wham'
+            'pyfeat.estimator',
+            'pyfeat.estimator.wham',
+            'pyfeat.estimator.mbar',
+            'pyfeat.estimator.tram',
+            'pyfeat.estimator.dtram',
+            'pyfeat.estimator.xtram'
         ]
 )
