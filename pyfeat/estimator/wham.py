@@ -9,7 +9,7 @@ WHAM estimator module
 """
 
 import numpy as np
-from pytram import NotConvergedWarning
+from pytram import NotConvergedWarning, ExpressionError
 
 
 ####################################################################################################

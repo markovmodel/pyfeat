@@ -4,7 +4,7 @@ r"""
 MBAR estimator wrapper
 =======================
 
-.. moduleauthor:: Antonia Mey <antonia.mey@fu-berlin.de>, Christoph Wehmeyer <christoph.wehmeyer@fu-berlin.de>
+..moduleauthor::Christoph Wehmeyer <christoph.wehmeyer@fu-berlin.de>, Antonia Mey <antonia.mey@fu-berlin.de>,
 
 """
 
@@ -126,16 +126,12 @@ class MBAR( object ):
             self._u_IJ_t = u_IJ_t
 
 
-
-
-
-
-
 class MBAR_LEGACY( object ):
     r"""
     I am the mbar legacy class
     """
     def __init__( self, u_IJ_t, M_J_t, N_J ):
+        raise NotImplementedError('I need to be implemented')
 
 
 

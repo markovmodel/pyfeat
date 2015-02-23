@@ -2,14 +2,12 @@ from setuptools import setup
 from os.path import join, dirname
 import numpy as np
 
-def read( filename ):
-    return open( join( dirname( __file__ ), filename ) ).read()
 
 setup(
     name='pyfeat',
     version='0.3.0',
     description='The python free energy analysis toolkit',
-    long_description=read( 'README.rst' ),
+    long_description='Commandline toolkit that allows the use of different free energy estimators using a single format',
     classifiers=[
             'Development Status :: 2 - Pre-alpha',
             'Environment :: Console',
@@ -38,7 +36,8 @@ setup(
             'pyfeat',
             'pyfeat.reader',
             'pyfeat.forge',
-            'pyfeat.estimator'
+            'pyfeat.estimator',
+            'pyfeat.api'
         ],
     test_suite='nose.collector'
 )

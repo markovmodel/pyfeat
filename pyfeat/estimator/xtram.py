@@ -34,11 +34,6 @@ class XTRAM( object ):
             Markov state trajectories
         N_K_i : 2-D numpy array
             Number of markov samples in each thermodynamic state
-        N_K : 1-D numpy array
-            Numer of thermodynamic samples array
-        target : Integer 
-            target state for which pi_i should be computed
-            default : 0
         """
 
         self._xtram_obj = pt.XTRAM( C_K_ij, u_I_x, T_x, M_x, N_K_i, target = 0 )
