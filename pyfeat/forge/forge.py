@@ -4,7 +4,7 @@ r"""
 Data container
 ==============
 
-.. moduleauthor:: Antonia Mey <antonia.mey@fu-berlin.de>
+.. moduleauthor:: Antonia Mey <antonia.mey@fu-berlin.de>, Christoph Wehmeyer <christoph.wehmeyer@fu-berlin.de>
 
 """
 
