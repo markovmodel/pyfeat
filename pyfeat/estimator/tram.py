@@ -29,27 +29,25 @@ class TRAM( object ):
         except AttributeError, e:
             raise NotImplementedError( "The TRAM estimator is not yet implemented in the pytram package" )
 
-
-
-    # def sc_iteration( self , ftol=10e-4, maxiter=10, verbose=False ):
-    #      self._tram_obj.sc_iteration( ftol=ftol, maxiter=maxiter, verbose=verbose )
+    def sc_iteration( self , ftol=1.0e-15, maxiter=1000, verbose=False ):
+         self._tram_obj.sc_iteration( ftol=ftol, maxiter=maxiter, verbose=verbose )
          
-    # @property
-    # def pi_i( self ):
-    #     return self._tram_obj.pi_i
+    @property
+    def pi_i( self ):
+        return self._tram_obj.pi_i
      
-    # @property
-    # def pi_K_i( self ):
-    #     return self._tram_obj.pi_K_i
+    @property
+    def pi_K_i( self ):
+        return self._tram_obj.pi_K_i
     
-    # @property
-    # def f_K( self ):
-    #     return self._tram_obj.f_K
+    @property
+    def f_K( self ):
+        return self._tram_obj.f_K
         
-    # @property
-    # def f_K_i( self ):
-    #     return -np.log( self.pi_K_i )
+    @property
+    def f_K_i( self ):
+        return -np.log( self.pi_K_i )
         
-    # @property
-    # def f_i( self ):
-    #     return -np.log( self.pi_i )
+    @property
+    def f_i( self ):
+        return -np.log( self.pi_i )
