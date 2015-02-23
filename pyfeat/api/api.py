@@ -196,8 +196,7 @@ def xtram_me( C_K_ij, u_I_x, T_x, M_x, N_K_i, maxiter = 100, ftol = 1.0e-10, ver
     N_K_i : numpy.ndarray( shape=(T,M), dtype=numpy.intc )
         Number of markov samples in each thermodynamic state
     """
-    
-    
+
     # try to create the WHAM object
     try:
         xtram_obj = XTRAM( C_K_ij, u_I_x, T_x, M_x, N_K_i )
@@ -226,12 +225,14 @@ def xtram_me( C_K_ij, u_I_x, T_x, M_x, N_K_i, maxiter = 100, ftol = 1.0e-10, ver
 #                                                                      #
 ########################################################################
 
-def xtram( forge, maxiter=100, ftol=1.0e-10, verbose= False ):
+def xtram( forge, lag = 1, maxiter=100, ftol=1.0e-10, verbose= False ):
     r"""
     Parameters
     ----------
     forge : object
         data forge or container for pyfeat input data
+    lag : int
+        lagtime at which the countmatrix is estimated
     maxiter : int
         maximum number of SC iteration steps during the optimisation of the stationary probabilities
     ftol : float (> 0.0)
@@ -244,7 +245,7 @@ def xtram( forge, maxiter=100, ftol=1.0e-10, verbose= False ):
     xtram_obj : object
         xtram estimator object with optimised stationary properties
     """
-    return xtram_me( forge.get_C_K_ij, forge.u_I_x, forge.T_x, forge.M_x, forge.N_K_i, maxiter = maxiter, ftol = ftol, verbose = verbose )
+    return xtram_me( forge.get_C_K_ij( lag ), forge.u_I_x, forge.T_x, forge.M_x, forge.N_K_i, maxiter = maxiter, ftol = ftol, verbose = verbose )
 
 
 ########################################################################
