@@ -10,6 +10,7 @@ XTRAM estimator wrapper
 
 import pytram as pt
 import numpy as np
+from pytram import NotConvergedWarning, ExpressionError
 
 
 class XTRAM( object ):
@@ -39,12 +40,17 @@ class XTRAM( object ):
             target state for which pi_i should be computed
             default : 0
         """
+
         self._xtram_obj = pt.XTRAM( C_K_ij, u_I_x, T_x, M_x, N_K_i, target = 0 )
+        self.n_therm_states = np.shape(N_K_i)[0]
+        self.n_markov_states = np.shape(N_K_i)[1]
 
 
     def sc_iteration( self , ftol=10e-4, maxiter = 10, verbose = False):
-         self._xtram_obj.sc_iteration( ftol, maxiter, verbose)
-         
+        
+        self._xtram_obj.sc_iteration( ftol, maxiter, verbose)
+
+    
     @property
     def pi_i( self ):
         return self._xtram_obj.pi_i
@@ -65,6 +71,22 @@ class XTRAM( object ):
     def f_i( self ):
         return -np.log(self.pi_i)
         
+    @property
+    def n_therm_states( self ):
+        return self._n_therm_states
+    
+    @n_therm_states.setter
+    def n_therm_states( self, m ):
+        self._n_therm_states = m
+
+    @property
+    def n_markov_states( self ):
+        return self._n_markov_states
+        
+        
+    @n_markov_states.setter
+    def n_markov_states( self, n ):
+        self._n_markov_states = n
         
          
          

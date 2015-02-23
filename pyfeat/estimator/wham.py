@@ -32,17 +32,16 @@ class WHAM( object ):
         b_K_i : numpy.ndarray( shape=(T,M), dtype=numpy.float64 )
             bias energies in the T thermodynamic and M discrete Markov states
         """
-        self.n_therm_states = N_K_i.shape[0]
-        self.n_markov_states = N_K_i.shape[1]
+        self._n_therm_states = N_K_i.shape[0]
+        self._n_markov_states = N_K_i.shape[1]
         self.gamma_K_i = b_K_i
-        self.N_K_i = N_K_i
-        self.pi_i = np.zeros( shape=(self.n_markov_states,), dtype=np.float64 )
-        # 'private' storage variable initialization
+        self._N_K_i = N_K_i
+        self._pi_i = np.zeros( shape=(self.n_markov_states,), dtype=np.float64 )
         self._f_K = None
         self._pi_K_i = None
 
 
-    def sc_iteration( self, maxiter=100, ftol=1.0E-5, verbose=False ):
+    def sc_iteration( self, maxiter=1000, ftol=1.0E-7, verbose=False ):
         r"""
         sc_iteration routine
         
@@ -63,50 +62,57 @@ class WHAM( object ):
         if verbose:
             print "# %25s %25s" % ( "[iteration step]", "[relative increment]" )
         if np.all( self.pi_i == 0.0 ):
-            self.pi_i[:] = self._p_step()
+            self._pi_i[:] = self._p_step()
         for i in xrange( maxiter ):
             f_new = self._f_step()
             nonzero = self._f_K.nonzero()
             finc = np.max( np.abs( ( f_new[nonzero] - self._f_K[nonzero] ) / self._f_K[nonzero] ) )
             self._f_K[:] = f_new[:]
-            self.pi_i = self._p_step()
+            self._pi_i = self._p_step()
             if verbose:
                 print "  %6d %10.3e" % ( i+1, finc )
             if finc <ftol:
                 break
         if finc>=ftol:
             raise NotConvergedWarning( "WHAM", finc )
-        self.pi_i /= self.pi_i.sum()
+        self._pi_i /= self._pi_i.sum()
             
             
     def _f_step( self ):
         return 1.0 / np.dot( self.gamma_K_i, self.pi_i ) + np.log( self.pi_i.sum() )
     def _p_step( self ):
-        return self.N_K_i.sum( axis=0 ) / np.dot( self.N_K_i.sum( axis=1 ) * self.f_K , self.gamma_K_i )
+        return self._N_K_i.sum( axis=0 ) / np.dot( self._N_K_i.sum( axis=1 ) * self.f_K , self.gamma_K_i )
 
+    @property
+    def n_therm_states( self ):
+        return self._n_therm_states
+    
+    @property
+    def n_markov_states( self ):
+        return self._n_markov_states
+    
+    @property
+    def pi_i( self ):
+        return self._pi_i
         
-    ############################################################################
-    #                                                                          #
-    #   f_K getter                                                             #
-    #                                                                          #
-    ############################################################################
+    @property
+    def f_i( self ):
+        return -np.log(self._pi_i)
+    
+    @property
+    def f_K_i( self ):
+        return -np.log(self.pi_K_i)
+
 
     @property
     def f_K( self ):
-        if None == self._f_K:
+        if self._f_K is None:
             self._f_K = 1.0 / np.dot( self.gamma_K_i, self.pi_i )
         return self._f_K
 
-
-    ############################################################################
-    #                                                                          #
-    #   pi_K_i getter                                                          #
-    #                                                                          #
-    ############################################################################
-
     @property
     def pi_K_i( self ):
-        if None == self._pi_K_i:
+        if self._pi_K_i is None:
             self._pi_K_i = self.f_K[:,np.newaxis] * self.pi_i[np.newaxis,:] * self.gamma_K_i
         return self._pi_K_i
 
@@ -118,7 +124,7 @@ class WHAM( object ):
     ############################################################################
 
     def _check_b_K_i( self, b_K_i ):
-        if None == b_K_i:
+        if b_K_i is None:
             raise ExpressionError( "b_K_i", "is None" )
         if not isinstance( b_K_i, (np.ndarray,) ):
             raise ExpressionError( "b_K_i", "invalid type (%s)" % str( type( b_K_i ) ) )
