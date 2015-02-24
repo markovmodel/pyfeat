@@ -42,13 +42,13 @@ if '__main__' == __name__:
     parser = ArgumentParser()
     parser.add_argument(
             'files',
-            help='pytram compatible files for evaluation (trajectory files)',
+            help='pyfeat compatible files for evaluation (trajectory files)',
             nargs='*',
             metavar='FILE'
         )
     parser.add_argument(
             "--kT_file",
-            help="specify a pytram compatible file containing kT information",
+            help="specify a pyfeat compatible file containing kT information",
             metavar="FILE"
         )
     parser.add_argument(
@@ -108,7 +108,7 @@ if '__main__' == __name__:
     #
     ############################################################################
     if 1 > len( args.files ):
-        print "ERROR: you must give at least one pytram compatible trajectory file!"
+        print "ERROR: you must give at least one pyfeat compatible trajectory file!"
         exit( 1 )
 
 

@@ -111,7 +111,7 @@ if '__main__' == __name__:
     #
     ############################################################################
     print "\n\n###################################### PYTRAM ######################################"
-    print "#\n#                          Invoking the xTRAM estimator"
+    print "#\n#                          Invoking the wham estimator"
     print "#\n### PARAMETERS\n#"
     print "# %25s %24d" % ( "[--lag]", args.lag )
     print "# %25s %24d" % ( "[--maxiter]", args.maxiter )
@@ -158,8 +158,8 @@ if '__main__' == __name__:
         wham_obj.sc_iteration( maxiter=args.maxiter, ftol=args.ftol, verbose=args.verbose )
         print "# ... converged!"
     except NotConvergedWarning, e:
-        print "#\n### WARNING\n#\n# xTRAM is not converged - use these results carefuly!"
-        print "#\n### RECOMMENDATION\n#\n# Run xtram.py again and increase --maxiter"
+        print "#\n### WARNING\n#\n# wham is not converged - use these results carefuly!"
+        print "#\n### RECOMMENDATION\n#\n# Run wham.py again and increase --maxiter"
 
 
 
@@ -190,7 +190,7 @@ if '__main__' == __name__:
     #
     ############################################################################
     print "#\n###################That's it, now it is time to put the kettle on ##############################\n#"
-    print "#\n#                  Thank you for using xtram in the pyfeat package!\n#\n#"
+    print "#\n#                  Thank you for using wham in the pyfeat package!\n#\n#"
     print "#\n################################################################################################\n\n"
 
 

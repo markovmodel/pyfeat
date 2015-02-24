@@ -40,13 +40,13 @@ if '__main__' == __name__:
     parser = ArgumentParser()
     parser.add_argument(
             'files',
-            help='pytram compatible files for evaluation',
+            help='pyfeat compatible files for evaluation',
             nargs='*',
             metavar='FILE'
         )
     parser.add_argument(
             "--b_K_i_file",
-            help="specify a pytram compatible file with discretised bias energies",
+            help="specify a pyfeat compatible file with discretised bias energies",
             metavar="FILE"
         )
     parser.add_argument(
@@ -98,11 +98,11 @@ if '__main__' == __name__:
     #   check mandatory command line arguments
     #
     ############################################################################
+    if 1 > len( args.files ):
+        print "ERROR: you must give at least one pyfeat compatible trajectory file!"
+        exit( 1 )
     if args.b_K_i_file is None:
         print "ERROR: you must set the --b_K_i_file option!"
-        exit( 1 )
-    if 1 > len( args.files ):
-        print "ERROR: you must give at least one pytram compatible trajectory file!"
         exit( 1 )
 
 
