@@ -2,7 +2,7 @@
 
 ####################################################################################################
 #                                                                                                  #
-#   RUN SCRIPT FOR THE XTRAM METHOD WITHIN THE PYTRAM package                                      #
+#   RUN SCRIPT FOR THE XTRAM METHOD WITHIN THE PYFEAT package                                      #
 #                                                                                                  #
 #    author: Christoph Wehmeyer <christoph.wehmeyer@fu-berlin.de>                                  #
 #    author: Antonia Mey <antonia.mey@fu-berlin.de>                                                #
@@ -117,7 +117,7 @@ if '__main__' == __name__:
     #   write header
     #
     ############################################################################
-    print "\n\n###################################### PYTRAM ######################################"
+    print "\n\n###################################### PYFEAT ######################################"
     print "#\n#                          Invoking the xTRAM estimator"
     print "#\n### PARAMETERS\n#"
     print "# %25s %24d" % ( "[--lag]", args.lag )
