@@ -28,10 +28,9 @@ class DTRAM( object ):
         b_K_i : numpy.ndarray( shape=(T,M), dtype=numpy.float64 )
             bias energies in the T thermodynamic and M discrete Markov states
         """
-
         self._dtram_obj = pt.DTRAM( C_K_ij, b_K_i )
 
-    def sc_iteration( self , ftol=1.0e-15, maxiter=1000, verbose=False ):
+    def sc_iteration( self, ftol=1.0e-15, maxiter=1000, verbose=False ):
          self._dtram_obj.sc_iteration( ftol=ftol, maxiter=maxiter, verbose=verbose )
 
     @property
