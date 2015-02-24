@@ -10,7 +10,6 @@ dTRAM estimator wrapper
 
 import pytram as pt
 import numpy as np
-from pytram import NotConvergedWarning, ExpressionError
 
 
 class DTRAM( object ):
@@ -47,11 +46,11 @@ class DTRAM( object ):
 
     @property
     def f_K_i( self ):
-        return -np.log( self.pi_K_i )
+        return self._dtram_obj.f_K_i
 
     @property
     def f_i( self ):
-        return -np.log(self.pi_i)
+        return self._dtram_obj.f_i
 
     @property
     def n_therm_states( self ):
