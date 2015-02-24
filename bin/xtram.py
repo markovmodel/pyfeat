@@ -197,7 +197,7 @@ if '__main__' == __name__:
     #
     ############################################################################
     print "#\n###################That's it, now it is time to put the kettle on ##############################\n#"
-    print "#\n#                  Thank you for using xtram in the pyfeat package!\n#\n#"
+    print "#\n#                  Thank you for using xTRAM in the pyfeat package!\n#\n#"
     print "#\n################################################################################################\n\n"
 
 
