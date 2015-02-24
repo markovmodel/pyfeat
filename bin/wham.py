@@ -52,13 +52,6 @@ if '__main__' == __name__:
             metavar="FILE"
         )
     parser.add_argument(
-            "--lag",
-            help="specify a lag time for evaluation",
-            type=int,
-            default=1,
-            metavar='INT'
-        )
-    parser.add_argument(
             "--maxlength",
             help="limit the number of trajectory frames",
             type=int,
@@ -110,10 +103,9 @@ if '__main__' == __name__:
     #   write header
     #
     ############################################################################
-    print "\n\n###################################### PYTRAM ######################################"
+    print "\n\n###################################### PYFEAT ######################################"
     print "#\n#                          Invoking the wham estimator"
     print "#\n### PARAMETERS\n#"
-    print "# %25s %24d" % ( "[--lag]", args.lag )
     print "# %25s %24d" % ( "[--maxiter]", args.maxiter )
     print "# %25s %24.5e" % ( "[--ftol]", args.ftol )
 
