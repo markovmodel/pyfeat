@@ -39,10 +39,5 @@ setup(
             'pyfeat.estimator',
             'pyfeat.api'
         ],
-    test_suite='nose.collector',
-    scripts=[
-            'bin/dtram.py',
-            'bin/wham.py',
-            'bin/xtram.py'
-        ]
+    test_suite='nose.collector'
 )
