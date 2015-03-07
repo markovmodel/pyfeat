@@ -22,12 +22,10 @@ class MBAR( object ):
         self.N_K = N_K
         self.M_I_x = M_I_x
         self.u_IJ_x = u_IJ_x
-        self._legacy = _legacy
-        self._mbar_obj = MBAR_LEGACY( u_IJ_x, M_I_x, N_K )
+        self._mbar_obj = mb.MBAR( u_IJ_x, N_K, maximum_iterations=0, verbose=False )
         
-    def sc_iteration( self, ftol=10e-04, maxiter=10000,verbose=False ):
-        self._mbar_obj = mb.MBAR( self.u_IJ_x, self.N_k, maximum_iterations=maxiter, relative_tolerance=ftol, verbose=verbose )
-        return mbar_obj
+    def sc_iteration( self, maxiter=1000, ftol=1.0e-6, verbose=False ):
+        self._mbar_obj._selfConsistentIteration( maximum_iterations=maxiter, relative_tolerance=ftol, verbose=verbose )
 
 
 
@@ -45,7 +43,7 @@ class MBAR( object ):
 
     @property
     def f_K():
-        raise NotImplementedError('Property not available yet')
+        return self._mbar_obj.f_k
 
     @property
     def f_K_i():
