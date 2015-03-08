@@ -39,7 +39,15 @@ class WHAM( object ):
         self._pi_i = np.zeros( shape=(self.n_markov_states,), dtype=np.float64 )
         self._f_K = None
         self._pi_K_i = None
+        self.citation = [
+            "The weighted histogram analysis method for free-energy calculations on biomolecules;", 
+            "Shankar Kumar, John M. Rosenberg, Djamal Bouzida, Robert H. Swendsen andPeter A. Kollman",
+            "J. Comput. Chem. 13, 1011–1021 (1992)"
+            ]
 
+    def cite( self, pre="" ):
+        for line in self.citation:
+            print "%s%s" % ( pre, line )
 
     def sc_iteration( self, maxiter=1000, ftol=1.0E-7, verbose=False ):
         r"""

@@ -23,11 +23,18 @@ class MBAR( object ):
         self.M_I_x = M_I_x
         self.u_IJ_x = u_IJ_x
         self._mbar_obj = mb.MBAR( u_IJ_x, N_K, maximum_iterations=0, verbose=False )
+        self.citation = [
+            "Statistically optimal analysis of samples from multiple equilibrium states;",
+            "Michael R Shirts and John D Chodera ",
+            "J. Chem. Phys. 129:124105 (2008)"
+            ]
         
     def sc_iteration( self, maxiter=1000, ftol=1.0e-6, verbose=False ):
         self._mbar_obj._selfConsistentIteration( maximum_iterations=maxiter, relative_tolerance=ftol, verbose=verbose )
 
-
+    def cite( self, pre="" ):
+        for line in self.citation:
+            print "%s%s" % ( pre, line )
 
     @property
     def n_therm_states( self ):

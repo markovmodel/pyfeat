@@ -16,8 +16,8 @@ class Forge( pt.TRAMData ):
     """
     def __init__( self, trajs, b_K_i=None, kT_K=None, kT_target=None, verbose=False ):
         super( Forge, self ).__init__( trajs, b_K_i=b_K_i, kT_K=kT_K, kT_target=kT_target, verbose=verbose )
-        self.M_K_t = None
-        self.u_IK_t = None
+        #self.M_K_t = None
+        #self.u_IK_t = None
 
     @property
     def M_K_t( self ):
