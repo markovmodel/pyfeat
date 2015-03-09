@@ -51,3 +51,10 @@ class TRAM( object ):
     @property
     def f_i( self ):
         return -np.log( self.pi_i )
+
+    @property
+    def citation( self ):
+        return self._tram_obj.citation
+
+    def cite( self, pre="" ):
+        self._tram_obj.cite( pre=pre )

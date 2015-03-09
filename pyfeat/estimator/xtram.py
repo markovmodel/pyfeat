@@ -82,6 +82,13 @@ class XTRAM( object ):
     @n_markov_states.setter
     def n_markov_states( self, n ):
         self._n_markov_states = n
+
+    @property
+    def citation( self ):
+        return self._xtram_obj.citation
+
+    def cite( self, pre="" ):
+        self._xtram_obj.cite( pre=pre )
         
          
          

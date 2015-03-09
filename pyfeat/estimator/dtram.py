@@ -28,9 +28,6 @@ class DTRAM( object ):
             bias energies in the T thermodynamic and M discrete Markov states
         """
         self._dtram_obj = pt.DTRAM( C_K_ij, b_K_i )
-        
-    def cite( self, pre = ""):
-        self._dtram_obj.cite( pre )
 
     def sc_iteration( self, ftol=1.0e-15, maxiter=1000, verbose=False ):
          self._dtram_obj.sc_iteration( ftol=ftol, maxiter=maxiter, verbose=verbose )
@@ -62,3 +59,10 @@ class DTRAM( object ):
     @property
     def n_markov_states( self ):
         return self._dtram_obj.n_markov_states
+
+    @property
+    def citation( self ):
+        return self._dtram_obj.citation
+
+    def cite( self, pre="" ):
+        self._dtram_obj.cite( pre=pre )
