@@ -24,9 +24,9 @@ class MBAR( object ):
         self.u_IJ_x = u_IJ_x
         self._mbar_obj = mb.MBAR( u_IJ_x, N_K, maximum_iterations=0, verbose=False )
         self.citation = [
-            "Statistically optimal analysis of samples from multiple equilibrium states;",
-            "Michael R Shirts and John D Chodera ",
-            "J. Chem. Phys. 129:124105 (2008)"
+                "Statistically optimal analysis of samples from multiple equilibrium states;",
+                "Michael R Shirts and John D Chodera ",
+                "J. Chem. Phys. 129:124105 (2008)"
             ]
         
     def sc_iteration( self, maxiter=1000, ftol=1.0e-6, verbose=False ):
