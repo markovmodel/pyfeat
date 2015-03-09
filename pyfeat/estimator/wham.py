@@ -40,9 +40,9 @@ class WHAM( object ):
         self._f_K = None
         self._pi_K_i = None
         self.citation = [
-            "The weighted histogram analysis method for free-energy calculations on biomolecules;", 
-            "Shankar Kumar, John M. Rosenberg, Djamal Bouzida, Robert H. Swendsen andPeter A. Kollman",
-            "J. Comput. Chem. 13, 1011–1021 (1992)"
+                "The weighted histogram analysis method for free-energy calculations on biomolecules;", 
+                "Shankar Kumar, John M. Rosenberg, Djamal Bouzida, Robert H. Swendsen andPeter A. Kollman",
+                "J. Comput. Chem. 13, 1011-1021 (1992)"
             ]
 
     def cite( self, pre="" ):
