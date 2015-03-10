@@ -9,7 +9,7 @@ API for the pyfeat package
 
 """
 
-from ..estimator import WHAM, XTRAM, DTRAM, TRAM
+from ..estimator import WHAM, XTRAM, DTRAM, TRAM, MBAR
 from pytram import NotConvergedWarning, ExpressionError
 from ..reader import Reader
 from ..forge import Forge
@@ -165,17 +165,74 @@ def dtram( forge, lag = 1,  maxiter=100, ftol=1.0e-10, verbose= False ):
 #   MBAR API function using the mathematical expressions at input      #
 #                                                                      #
 ########################################################################
-def mbar_me():
-    raise NotImplementedError('This api function has not been implemented yet')
+def mbar_me( b_IK_x, M_I_x, N_K, maxiter=1000, ftol=1.0e-10, verbose=False ):
+    r"""
+    Parameters
+    ----------
+    b_IK_x : numpy.ndarray( shape=(T,M,M), dtype=numpy.intc )
+        transition counts between the M discrete Markov states for each of the T thermodynamic ensembles
+    M_I_x : numpy.ndarray( shape=(T,M), dtype=numpy.float64 )
+        bias energies in the T thermodynamic and M discrete Markov states
+    N_K : numpy.ndarray( shape=(T), dtype=numpy.float64 )
+        number of samples at each thermodynamic state T
+    maxiter : int
+        maximum number of SC iteration steps during the optimisation of the stationary probabilities
+    ftol : float (> 0.0)
+        convergence criterion based on the max relative change in an self-consistent-iteration step
+    verbose : boolean
+        writes convergence information to stdout during the self-consistent-iteration cycle
+    Returns:
+    -------
+    mbar_obj : obj
+        mbar estimator object with optimised stationary properties
+   
+    """
+    # try to create the MBAR object
+    try:
+        mbar_obj = MBAR( b_IK_x, M_I_x, N_k )
+    except ExpressionError, e:
+        print "# ERROR ############################################################################"
+        print "# Your input was faulty!"
+        print "# The < %s > object is malformed: %s" % ( e.expression, e.msg )
+        print "# ABORTING #########################################################################"
+        raise
+    # try to converge the stationary probabilities
+    try:
+        mbar_obj.sc_iteration( maxiter=maxiter, ftol=ftol, verbose=verbose )
+    except NotConvergedWarning, e:
+        print "# WARNING ##########################################################################"
+        print "# WHAM did not converge within %d steps!" % maxiter
+        print "# The last relative increment was %.6e." % e.relative_increment
+        print "# You should run the < sc_iteration > method again."
+        print "# USE RESULTS WITH CARE ############################################################"
+    finally:
+        return mbar_obj
+
 
 ########################################################################
 #                                                                      #
 #   MBAR API function                                                  #
 #                                                                      #
 ########################################################################
-def mbar():
-    raise NotImplementedError('This api function has not been implemented yet')
-    
+def mbar( forge, maxiter = 1000, ftol = 1.0e-10, verbose = False ):
+    r"""
+    Parameters
+    ----------
+    forge : object
+        data forge or container for pyfeat input data
+    maxiter : int
+        maximum number of SC iteration steps during the optimisation of the stationary probabilities
+    ftol : float (> 0.0)
+        convergence criterion based on the max relative change in an self-consistent-iteration step
+    verbose : boolean
+        writes convergence information to stdout during the self-consistent-iteration cycle
+    Returns
+    -------
+    mbar_obj : object
+        mbar estimator object with optimised stationary properties
+    """
+    return mbar_me( forge.b_IK_x, forge.M_K_x, forge.N_K, maxiter=maxiter, ftol=ftol, verbose=verbose )
+
  
 ########################################################################
 #                                                                      #
@@ -183,11 +240,11 @@ def mbar():
 #                                                                      #
 ########################################################################
 
-def xtram_me( C_K_ij, u_I_x, T_x, M_x, N_K_i, maxiter = 100, ftol = 1.0e-10, verbose = False ):
+def xtram_me( C_K_ij, b_I_x, T_x, M_x, N_K_i, maxiter = 100, ftol = 1.0e-10, verbose = False ):
     r"""
     C_K_ij : numpy.ndarray( shape=(T,M,M), dtype=numpy.intc )
         transition counts between the M discrete Markov states for each of the T thermodynamic ensembles
-    u_I_x : numpy.ndarray( shape=(T,N), dtype=numpy.float64 )
+    b_I_x : numpy.ndarray( shape=(T,N), dtype=numpy.float64 )
         Biasing tensor
     T_x : numpy.ndarray( shape=(N), dtype=numpy.intc )
         Thermodynamic state trajectory
@@ -199,7 +256,7 @@ def xtram_me( C_K_ij, u_I_x, T_x, M_x, N_K_i, maxiter = 100, ftol = 1.0e-10, ver
 
     # try to create the WHAM object
     try:
-        xtram_obj = XTRAM( C_K_ij, u_I_x, T_x, M_x, N_K_i )
+        xtram_obj = XTRAM( C_K_ij, b_I_x, T_x, M_x, N_K_i )
     except ExpressionError, e:
         print "# ERROR ############################################################################"
         print "# Your input was faulty!"
@@ -245,7 +302,7 @@ def xtram( forge, lag = 1, maxiter=100, ftol=1.0e-10, verbose= False ):
     xtram_obj : object
         xtram estimator object with optimised stationary properties
     """
-    return xtram_me( forge.get_C_K_ij( lag ), forge.u_I_x, forge.T_x, forge.M_x, forge.N_K_i, maxiter = maxiter, ftol = ftol, verbose = verbose )
+    return xtram_me( forge.get_C_K_ij( lag ), forge.b_I_x, forge.T_x, forge.M_x, forge.N_K_i, maxiter = maxiter, ftol = ftol, verbose = verbose )
 
 
 ########################################################################

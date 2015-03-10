@@ -17,7 +17,7 @@ class XTRAM( object ):
     r"""
     I am the xTRAM wrapper
     """
-    def __init__( self, C_K_ij, u_I_x, T_x, M_x, N_K_i, target = 0 ):
+    def __init__( self, C_K_ij, b_I_x, T_x, M_x, N_K_i, target = 0 ):
 
         r"""
         Initialize the XTRAM object
@@ -26,7 +26,7 @@ class XTRAM( object ):
         ----------
         C_K_ij : 3-D numpy array
             Countmatrix for each thermodynamic state K
-        u_I_x : 2-D numpy array
+        b_I_x : 2-D numpy array
             Biasing tensor
         T_x : 1-D numpy array
             Thermodynamic state trajectory
@@ -36,7 +36,7 @@ class XTRAM( object ):
             Number of markov samples in each thermodynamic state
         """
 
-        self._xtram_obj = pt.XTRAM( C_K_ij, u_I_x, T_x, M_x, N_K_i, target = 0 )
+        self._xtram_obj = pt.XTRAM( C_K_ij, b_I_x, T_x, M_x, N_K_i, target = 0 )
         self.n_therm_states = np.shape(N_K_i)[0]
         self.n_markov_states = np.shape(N_K_i)[1]
 

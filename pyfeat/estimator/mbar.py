@@ -16,13 +16,13 @@ class MBAR( object ):
     r"""
     I am the mbar wrapper
     """
-    def __init__( self, u_IJ_x, M_I_x, N_K ):
+    def __init__( self, b_IK_x, M_I_x, N_K ):
         self._n_therm_states = None
         self._n_markov_states = None
         self.N_K = N_K
         self.M_I_x = M_I_x
-        self.u_IJ_x = u_IJ_x
-        self._mbar_obj = mb.MBAR( u_IJ_x, N_K, maximum_iterations=0, verbose=False )
+        self.b_IK_x = b_IK_x
+        self._mbar_obj = mb.MBAR( b_IK_x, N_K, maximum_iterations=0, verbose=False )
         self.citation = [
                 "Statistically optimal analysis of samples from multiple equilibrium states;",
                 "Michael R Shirts and John D Chodera ",
@@ -73,7 +73,7 @@ class MBAR( object ):
 #     r"""
 #     I am the mbar legacy class
 #     """
-#     def __init__( self, u_IJ_x, M_I_x, N_K ):
+#     def __init__( self, b_IK_x, M_I_x, N_K ):
 #         raise NotImplementedError('I need to be implemented')
         
 #     def _check_N_K( self, N_K ):
@@ -126,32 +126,32 @@ class MBAR( object ):
 #         if self._check_M_I_x( M_I_x ):
 #             self._M_I_x = M_I_x
 
-#     def _check_u_IJ_x( self, u_IJ_x ):
-#         if None is u_IJ_x:
-#             raise ExpressionError( "u_IJ_x", "is None" )
-#         if not isinstance( u_IJ_x, (np.ndarray,) ):
-#             raise ExpressionError( "u_IJ_x", "invalid type (%s)" % str( type( u_IJ_x ) ) )
-#         if 3 != u_IJ_x.ndim:
-#             raise ExpressionError( "u_IJ_x", "invalid number of dimensions (%d)" % u_IJ_x.ndim )
-#         if u_IJ_x.shape[0] != self.n_therm_states:
-#             raise ExpressionError( "u_IJ_x", "unmatching number of thermodynamic states (%d,%d)" % (u_IJ_x.shape[0], self.n_therm_states) )
-#         if u_IJ_x.shape[1] != self.n_therm_states:
-#             raise ExpressionError( "u_IJ_x", "unmatching number of thermodynamic states (%d,%d)" % (u_IJ_x.shape[1], self.n_therm_states) )
-#         if u_IJ_x.shape[2] != self.M_I_x.shape[1]:
-#             raise ExpressionError( "u_IJ_x_x", "unmatching sample dimension (%d,%d)" % (u_IJ_x.shape[2], self.M_I_x.shape[1]) )
-#         if np.float64 != u_IJ_x.dtype:
-#             raise ExpressionError( "u_IJ_x", "invalid dtype (%s)" % str( u_IJ_x.dtype ) )
+#     def _check_b_IK_x( self, b_IK_x ):
+#         if None is b_IK_x:
+#             raise ExpressionError( "b_IK_x", "is None" )
+#         if not isinstance( b_IK_x, (np.ndarray,) ):
+#             raise ExpressionError( "b_IK_x", "invalid type (%s)" % str( type( b_IK_x ) ) )
+#         if 3 != b_IK_x.ndim:
+#             raise ExpressionError( "b_IK_x", "invalid number of dimensions (%d)" % b_IK_x.ndim )
+#         if b_IK_x.shape[0] != self.n_therm_states:
+#             raise ExpressionError( "b_IK_x", "unmatching number of thermodynamic states (%d,%d)" % (b_IK_x.shape[0], self.n_therm_states) )
+#         if b_IK_x.shape[1] != self.n_therm_states:
+#             raise ExpressionError( "b_IK_x", "unmatching number of thermodynamic states (%d,%d)" % (b_IK_x.shape[1], self.n_therm_states) )
+#         if b_IK_x.shape[2] != self.M_I_x.shape[1]:
+#             raise ExpressionError( "b_IK_x_x", "unmatching sample dimension (%d,%d)" % (b_IK_x.shape[2], self.M_I_x.shape[1]) )
+#         if np.float64 != b_IK_x.dtype:
+#             raise ExpressionError( "b_IK_x", "invalid dtype (%s)" % str( b_IK_x.dtype ) )
 #         return True
 
 #     @property
-#     def u_IJ_x( self ):
-#         return self._u_IJ_x
+#     def b_IK_x( self ):
+#         return self._b_IK_x
 
 #     @u_I_x.setter
-#     def u_IJ_x( self, u_IJ_x ):
-#         self._u_IJ_x = None
-#         if self._check_u_IJ_x( u_IJ_x ):
-#             self._u_IJ_x = u_IJ_x
+#     def b_IK_x( self, b_IK_x ):
+#         self._b_IK_x = None
+#         if self._check_b_IK_x( b_IK_x ):
+#             self._b_IK_x = b_IK_x
 
 
 
