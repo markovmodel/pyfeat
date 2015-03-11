@@ -57,7 +57,7 @@ class Forge( pt.TRAMData ):
             for t in xrange( traj['t'].shape[0] ):
                 K = traj['t'][t]
                 for I in xrange( self.n_therm_states ):
-                    self._b_IK_x[I,K,t_K[K]] = self.kT_K[K] * ( 1.0/self.kT_K[I] - 1.0/self.kT_K[self.kT_target] ) * traj['u'][t]
+                    self._b_IK_x[I,K,t_K[K]] = self.kT_K[K] * ( 1.0/self.kT_K[I] - 1.0/self.kT_K[self.kT_target] ) * traj['b'][t]
                 t_K[K] += 1
 
     def gen_b_IK_x( self ):
@@ -78,7 +78,7 @@ class Forge( pt.TRAMData ):
             for t in xrange( traj['t'].shape[0] ):
                 K = traj['t'][t]
                 for I in xrange( self.n_therm_states ):
-                    self._b_IK_x[I,K,t_K[K]] = traj['u'][I,t]
+                    self._b_IK_x[I,K,t_K[K]] = traj['b'][I,t]
                 t_K[K] += 1
 
 

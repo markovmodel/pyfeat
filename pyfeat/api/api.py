@@ -189,7 +189,7 @@ def mbar_me( b_IK_x, M_I_x, N_K, maxiter=1000, ftol=1.0e-10, verbose=False ):
     """
     # try to create the MBAR object
     try:
-        mbar_obj = MBAR( b_IK_x, M_I_x, N_k )
+        mbar_obj = MBAR( b_IK_x, M_I_x, N_K )
     except ExpressionError, e:
         print "# ERROR ############################################################################"
         print "# Your input was faulty!"

@@ -49,19 +49,19 @@ class MBAR( object ):
         return self._n_markov_states
 
     @property
-    def f_K():
+    def f_K( self ):
         return self._mbar_obj.f_k
 
     @property
-    def f_K_i():
+    def f_K_i( self ):
         raise NotImplementedError('Property not available yet')
 
     @property
-    def pi_i():
+    def pi_i( self ):
         raise NotImplementedError('Property not available yet')
 
     @property
-    def pi_K_i():
+    def pi_K_i( self ):
         raise NotImplementedError('Property not available yet')
 
 
