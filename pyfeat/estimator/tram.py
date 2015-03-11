@@ -15,7 +15,7 @@ class TRAM( object ):
     r"""
     I am the TRAM wrapper
     """
-    def __init__( self, C_K_ij, u_I_x, M_x, N_K_i ):
+    def __init__( self, C_K_ij, b_I_x, M_x, N_K_i ):
         r"""
         Initialize the TRAM object
         
@@ -25,7 +25,7 @@ class TRAM( object ):
             transition counts between the M discrete Markov states for each of the T thermodynamic ensembles
         """
         try:
-            self._tram_obj = pt.TRAM( C_K_ij, u_I_x, M_x, N_K_i )
+            self._tram_obj = pt.TRAM( C_K_ij, b_I_x, M_x, N_K_i )
         except AttributeError, e:
             raise NotImplementedError( "The TRAM estimator is not yet implemented in the pytram package" )
 
