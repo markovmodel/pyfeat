@@ -5,5 +5,5 @@ from .reader import Reader
 # raise the Forge class onto the pyfeat package level
 from .forge import Forge
 
-#raise API to package level
-from .api import mbar, mbar_me, xtram, xtram_me, dtram, dtram_me, wham, wham_me
+#raise API functions onto package level
+from .api import xtram, xtram_me, dtram, dtram_me, wham, wham_me

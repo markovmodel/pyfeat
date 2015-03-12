@@ -1,5 +1,4 @@
 r"""
-
 ======================
 TRAM estimator wrapper
 ======================
@@ -15,22 +14,40 @@ class TRAM( object ):
     r"""
     I am the TRAM wrapper
     """
-    def __init__( self, C_K_ij, b_I_x, M_x, N_K_i ):
+    def __init__( self, C_K_ij, b_K_x, M_x, N_K_i ):
         r"""
         Initialize the TRAM object
-        
+
         Parameters
         ----------
         C_K_ij : numpy.ndarray( shape=(T,M,M), dtype=numpy.intc )
             transition counts between the M discrete Markov states for each of the T thermodynamic ensembles
+        b_K_x : numpy.ndarray( shape=(T,samples), dtype=numpy.float )
+            all samples for biases at thermodynamic state K
+        M_x : numpy.ndarray( shape=(samples), dtype=numpy.intc )
+            trajectory of Markov states sampled
+        N_K_i : numpy.ndarray( shape=(T,M), dtype=numpy.intc )
+           total number of counts from simulation at T in M discrete Markov state (bin)
         """
         try:
-            self._tram_obj = pt.TRAM( C_K_ij, b_I_x, M_x, N_K_i )
+            self._tram_obj = pt.TRAM( C_K_ij, b_K_x, M_x, N_K_i )
         except AttributeError, e:
             raise NotImplementedError( "The TRAM estimator is not yet implemented in the pytram package" )
 
-    def sc_iteration( self , ftol=1.0e-15, maxiter=1000, verbose=False ):
-         self._tram_obj.sc_iteration( ftol=ftol, maxiter=maxiter, verbose=verbose )
+    def sc_iteration( self , maxiter=100, ftol=1.0E-5, verbose=False ):
+        r"""
+        sc_iteration function
+
+        Parameters
+        ----------
+        maxiter : int
+            maximum number of self-consistent-iteration steps
+        ftol : float (> 0.0)
+            convergence criterion based on the max relative change in an self-consistent-iteration step
+        verbose : boolean
+            Be loud and noisy
+        """
+         self._tram_obj.sc_iteration( maxiter=maxiter, ftol=ftol, verbose=verbose )
          
     @property
     def pi_i( self ):

@@ -27,7 +27,7 @@ class WHAM( object ):
         
         Parameters
         ----------
-        N_K_i : numpy.ndarray( shape=(T,M), dtype=numpy.float64 )
+        N_K_i : numpy.ndarray( shape=(T,M), dtype=numpy.intc )
             total number of counts from simulation at T in M discrete Markov state (bin)
         b_K_i : numpy.ndarray( shape=(T,M), dtype=numpy.float64 )
             bias energies in the T thermodynamic and M discrete Markov states
@@ -49,10 +49,10 @@ class WHAM( object ):
         for line in self.citation:
             print "%s%s" % ( pre, line )
 
-    def sc_iteration( self, maxiter=1000, ftol=1.0E-7, verbose=False ):
+    def sc_iteration( self, maxiter=100, ftol=1.0E-5, verbose=False ):
         r"""
-        sc_iteration routine
-        
+        sc_iteration function
+
         Parameters
         ----------
         maxiter : int
@@ -61,7 +61,6 @@ class WHAM( object ):
             convergence criterion based on the max relative change in an self-consistent-iteration step
         verbose : boolean
             Be loud and noisy
-        
         """
         # reset internal storage variables
         self._pi_K_i = None
@@ -84,8 +83,7 @@ class WHAM( object ):
         if finc>=ftol:
             raise NotConvergedWarning( "WHAM", finc )
         self._pi_i /= self._pi_i.sum()
-            
-            
+
     def _f_step( self ):
         return 1.0 / np.dot( self.gamma_K_i, self.pi_i ) + np.log( self.pi_i.sum() )
     def _p_step( self ):
@@ -111,7 +109,6 @@ class WHAM( object ):
     def f_K_i( self ):
         return -np.log(self.pi_K_i)
 
-
     @property
     def f_K( self ):
         if self._f_K is None:
@@ -124,7 +121,6 @@ class WHAM( object ):
             self._pi_K_i = self.f_K[:,np.newaxis] * self.pi_i[np.newaxis,:] * self.gamma_K_i
         return self._pi_K_i
 
-        
     ############################################################################
     #                                                                          #
     #   _b_K_i sanity checks                                                   #
@@ -145,14 +141,12 @@ class WHAM( object ):
         if np.float64 != b_K_i.dtype:
             raise ExpressionError( "b_K_i", "invalid dtype (%s)" % str( b_K_i.dtype ) )
         return True
-        
-        
+
     ############################################################################
     #                                                                          #
     #   gamma_K_i getter and setter                                            #
     #                                                                          #
     ############################################################################
-
 
     @property
     def gamma_K_i( self ):

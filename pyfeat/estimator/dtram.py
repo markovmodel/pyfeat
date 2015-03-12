@@ -1,5 +1,4 @@
 r"""
-
 =======================
 dTRAM estimator wrapper
 =======================
@@ -19,7 +18,7 @@ class DTRAM( object ):
     def __init__( self, C_K_ij, b_K_i ):
         r"""
         Initialize the DTRAM object
-        
+
         Parameters
         ----------
         C_K_ij : numpy.ndarray( shape=(T,M,M), dtype=numpy.intc )
@@ -29,8 +28,20 @@ class DTRAM( object ):
         """
         self._dtram_obj = pt.DTRAM( C_K_ij, b_K_i )
 
-    def sc_iteration( self, ftol=1.0e-15, maxiter=1000, verbose=False ):
-         self._dtram_obj.sc_iteration( ftol=ftol, maxiter=maxiter, verbose=verbose )
+    def sc_iteration( self, maxiter=100, ftol=1.0e-5, verbose=False ):
+        r"""
+        sc_iteration function
+
+        Parameters
+        ----------
+        maxiter : int
+            maximum number of self-consistent-iteration steps
+        ftol : float (> 0.0)
+            convergence criterion based on the max relative change in an self-consistent-iteration step
+        verbose : boolean
+            Be loud and noisy
+        """
+        self._dtram_obj.sc_iteration( ftol=ftol, maxiter=maxiter, verbose=verbose )
 
     @property
     def pi_i( self ):

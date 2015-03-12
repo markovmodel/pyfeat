@@ -1,68 +1,69 @@
-r"""
+#r"""
 
-=======================
-MBAR estimator wrapper
-=======================
+#=======================
+#MBAR estimator wrapper
+#=======================
 
-..moduleauthor::Christoph Wehmeyer <christoph.wehmeyer@fu-berlin.de>, Antonia Mey <antonia.mey@fu-berlin.de>,
+#..moduleauthor::Christoph Wehmeyer <christoph.wehmeyer@fu-berlin.de>, Antonia Mey <antonia.mey@fu-berlin.de>,
 
-"""
+#"""
 
-import pymbar as mb
-import numpy as np
-from pytram import ExpressionError
+#import pymbar as mb
+#import numpy as np
+#from pytram import ExpressionError
 
-class MBAR( object ):
-    r"""
-    I am the mbar wrapper
-    """
-    def __init__( self, b_IK_x, M_I_x, N_K ):
-        self._n_therm_states = None
-        self._n_markov_states = None
-        self.N_K = N_K
-        self.M_I_x = M_I_x
-        self.b_IK_x = b_IK_x
-        self._mbar_obj = mb.MBAR( b_IK_x, N_K, maximum_iterations=0, verbose=False )
-        self.citation = [
-                "Statistically optimal analysis of samples from multiple equilibrium states;",
-                "Michael R Shirts and John D Chodera ",
-                "J. Chem. Phys. 129:124105 (2008)"
-            ]
-        
-    def sc_iteration( self, maxiter=1000, ftol=1.0e-6, verbose=False ):
-        self._mbar_obj._selfConsistentIteration( maximum_iterations=maxiter, relative_tolerance=ftol, verbose=verbose )
+#class MBAR( object ):
+#    r"""
+#    I am the mbar wrapper
+#    """
+#    def __init__( self, b_IK_x, b_K_x, M_I_x, N_K ):
+#        self._n_therm_states = None
+#        self._n_markov_states = None
+#        self.N_K = N_K
+#        self.M_I_x = M_I_x
+#        self.b_IK_x = b_IK_x
+#        self.b_K_x = b_K_x
+#        self._mbar_obj = mb.MBAR( b_IK_x, N_K, maximum_iterations=0, verbose=False )
+#        self.citation = [
+#                "Statistically optimal analysis of samples from multiple equilibrium states;",
+#                "Michael R Shirts and John D Chodera ",
+#                "J. Chem. Phys. 129:124105 (2008)"
+#            ]
 
-    def cite( self, pre="" ):
-        for line in self.citation:
-            print "%s%s" % ( pre, line )
+#    def sc_iteration( self, maxiter=1000, ftol=1.0e-6, verbose=False ):
+#        self._mbar_obj._selfConsistentIteration( maximum_iterations=maxiter, relative_tolerance=ftol, verbose=verbose )
 
-    @property
-    def n_therm_states( self ):
-        if self._n_therm_states is None:
-            self._n_therm_states = self.N_K.shape[0]
-        return self._n_therm_states
+#    def cite( self, pre="" ):
+#        for line in self.citation:
+#            print "%s%s" % ( pre, line )
 
-    @property
-    def n_markov_states( self ):
-        if self._n_markov_states is None:
-            self._n_markov_states = self.M_I_x.max() + 1
-        return self._n_markov_states
+#    @property
+#    def n_therm_states( self ):
+#        if self._n_therm_states is None:
+#            self._n_therm_states = self.N_K.shape[0]
+#        return self._n_therm_states
 
-    @property
-    def f_K( self ):
-        return self._mbar_obj.f_k
+#    @property
+#    def n_markov_states( self ):
+#        if self._n_markov_states is None:
+#            self._n_markov_states = self.M_I_x.max() + 1
+#        return self._n_markov_states
 
-    @property
-    def f_K_i( self ):
-        raise NotImplementedError('Property not available yet')
+#    @property
+#    def f_K( self ):
+#        return self._mbar_obj.f_k
 
-    @property
-    def pi_i( self ):
-        raise NotImplementedError('Property not available yet')
+#    @property
+#    def f_K_i( self ):
+#        raise NotImplementedError('Property not available yet')
 
-    @property
-    def pi_K_i( self ):
-        raise NotImplementedError('Property not available yet')
+#    @property
+#    def pi_i( self ):
+#        raise NotImplementedError('Property not available yet')
+
+#    @property 
+#    def pi_K_i( self ):
+#       raise NotImplementedError('Property not available yet')
 
 
 #######################################################################
