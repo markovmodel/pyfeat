@@ -47,7 +47,7 @@ class TRAM( object ):
         verbose : boolean
             Be loud and noisy
         """
-         self._tram_obj.sc_iteration( maxiter=maxiter, ftol=ftol, verbose=verbose )
+        self._tram_obj.sc_iteration( maxiter=maxiter, ftol=ftol, verbose=verbose )
          
     @property
     def pi_i( self ):
