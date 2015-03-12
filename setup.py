@@ -2,7 +2,6 @@ from setuptools import setup
 from os.path import join, dirname
 import numpy as np
 
-
 setup(
     name='pyfeat',
     version='0.3.0',
@@ -24,14 +23,14 @@ setup(
             'Topic :: Scientific/Engineering :: Mathematics',
             'Topic :: Scientific/Engineering :: Physics'
         ],
-    keywords=[ 'TRAM', 'WHAM', 'MBAR', 'free energy' ],
+    keywords=[ 'TRAM', 'WHAM', 'free energy' ],
     url='http://github.com/markovmodel/pyfeat',
     author='The pyfeat team',
     author_email='pyfeat@lists.fu-berlin.de',
     license='Simplified BSD License',
     setup_requires=[ 'numpy>=1.7.1', 'cython>=0.15', 'setuptools>=0.6', 'pytram>=0.1.6' ],
-    tests_require=[ 'numpy>=1.7.1', 'pymbar==2.0.0-beta', 'nose>=1.3' ],
-    install_requires=[ 'numpy>=1.7.1', 'pymbar==2.0.0-beta' ],
+    tests_require=[ 'numpy>=1.7.1', 'nose>=1.3' ],
+    install_requires=[ 'numpy>=1.7.1' ],
     packages=[
             'pyfeat',
             'pyfeat.reader',
