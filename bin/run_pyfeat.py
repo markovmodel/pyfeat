@@ -48,7 +48,7 @@ if '__main__' == __name__:
         )
     parser.add_argument(
             '--estimator',
-            help='specify an available estimator choices are: XTRAM, DTRAM, MBAR, WHAM',
+            help='specify an available estimator choices are: XTRAM, DTRAM, WHAM',
             default='WHAM',
             metavar='STR'
         )
@@ -96,14 +96,14 @@ if '__main__' == __name__:
             "--maxiter",
             help="limit the number of fixed point iterations",
             type=int,
-            default=1000,
+            default=100,
             metavar='INT'
         )
     parser.add_argument(
             "--ftol",
             help="limit the requested convergence level",
             type=float,
-            default=1.0E-10,
+            default=1.0E-5,
             metavar='FLOAT'
         )
     parser.add_argument(
@@ -198,20 +198,17 @@ if '__main__' == __name__:
         forge = Forge( reader.trajs, kT_K=reader.kT_K, kT_target=args.kT_target )
         if args.estimator == 'XTRAM':
             try:
-                estimator = XTRAM( forge.get_C_K_ij(args.lag), forge.u_I_x, forge.T_x, forge.M_x, forge.N_K_i, target = forge.kT_target )
+                estimator = XTRAM( forge.get_C_K_ij(args.lag), forge.b_K_x, forge.T_x, forge.M_x, forge.N_K_i, target = forge.kT_target )
             except ExpressionError, e:
                 print "#\n### ERROR\n#"
                 print "# Your input was faulty!"
                 print "# The < %s > object is malformed: %s" % ( e.expression, e.msg )
                 print "#\n### ABORTING\n\n"
                 exit( 1 )
-        elif args.estimator == 'MBAR':
-            print "#\n### ERROR\n#"
-            print "MBAR cannot be used yet!"
-            exit(1)
         elif args.estimator == 'TRAM':
             print "#\n### ERROR\n#"
             print 'TRAM cannot be used yet!'
+            exit(1)
         
     print "#\n### SYSTEM INFORMATION\n#"
     print "# %25s %24d" % ( "[markov states]", forge.n_markov_states )
@@ -263,6 +260,8 @@ if '__main__' == __name__:
     ############################################################################
     print "#\n###################That's it, now it is time to put the kettle on ##############################\n#"
     print "#\n#                  Thank you for using %s in the pyfeat package!\n#\n#" %args.estimator
+    print "### CITATION\n#"
+    estimator.cite( pre="#    " )
     print "#\n################################################################################################\n\n"
 
 
