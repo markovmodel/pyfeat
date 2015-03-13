@@ -92,19 +92,19 @@ class WHAM( object ):
     @property
     def n_therm_states( self ):
         return self._n_therm_states
-    
+
     @property
     def n_markov_states( self ):
         return self._n_markov_states
-    
+
     @property
     def pi_i( self ):
         return self._pi_i
-        
+
     @property
     def f_i( self ):
         return -np.log(self._pi_i)
-    
+
     @property
     def f_K_i( self ):
         return -np.log(self.pi_K_i)
