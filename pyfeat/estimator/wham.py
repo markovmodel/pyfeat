@@ -87,7 +87,7 @@ class WHAM( object ):
     def _f_step( self ):
         return 1.0 / np.dot( self.gamma_K_i, self.pi_i ) + np.log( self.pi_i.sum() )
     def _p_step( self ):
-        return self._N_K_i.sum( axis=0 ) / np.dot( self._N_K_i.sum( axis=1 ) * self.f_K , self.gamma_K_i )
+        return self._N_K_i.sum( axis=0 ) / np.dot( self._N_K_i.sum( axis=1 ) * self._f_K , self.gamma_K_i )
 
     @property
     def n_therm_states( self ):

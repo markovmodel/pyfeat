@@ -6,4 +6,4 @@ from .reader import Reader
 from .forge import Forge
 
 #raise API functions onto package level
-from .api import xtram, xtram_me, dtram, dtram_me, wham, wham_me
+from .api import xtram, xtram_me, dtram, dtram_me, wham, wham_me, read_files, convert_data

@@ -326,7 +326,7 @@ def tram():
 #                                                                      #
 ########################################################################    
     
-def forge_data( trajs, b_K_i=None, kT_K=None, kT_target=None ):
+def convert_data( trajs, b_K_i=None, kT_K=None, kT_target=None ):
     r"""
     API function for creating the data forge object which will then be used for the estimators
 
