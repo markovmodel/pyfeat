@@ -8,7 +8,7 @@ setup(
     description='The python free energy analysis toolkit',
     long_description='Commandline toolkit that allows the use of different free energy estimators using a single format',
     classifiers=[
-            'Development Status :: 2 - Pre-alpha',
+            'Development Status :: 3 - Alpha',
             'Environment :: Console',
             'Intended Audience :: Science/Research',
             'License :: OSI Approved :: BSD License',

@@ -1,0 +1,45 @@
+*********
+CHANGELOG
+*********
+
+
+0.1.x
+=====
+
+Implemented WHAM and MBAR (internal Alpha version - not released)
+
+
+0.2.0
+=====
+
+WHAM + MBAR functional (Beta version)
+
+0.2.1
+-----
+
+Switching dependencies to numpy>=1.7.1; adding missing files.
+
+0.2.2
+-----
+
+Bugfix regarding the thermodynamic free energy array in WHAM
+
+0.2.3
+-----
+
+Restructured the MBAR implementation for speed up and reduced the cython dependency to 0.15
+
+0.3.0
+=====
+
+Restructured API
+Implentation of new Reader
+Implementation of new Data Converter (Forge)
+new implementation of a runscript.
+Complete new implementation of WHAM
+Removed MBAR legacy code to include pymbar in futrue release
+Added pytram dependency with implementation of DTRAM and XTRAM
+Added example ipython notebook for asymatric double-well potential
+f_K now retrun the same quantities for all estimators
+
+
