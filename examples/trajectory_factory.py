@@ -36,7 +36,7 @@ class AssymetricDoubleWellPotential ( object ):
     def energy( self, x ):
         return 2*(x-2)-6*(x-2)**2 + (x-2)**4
     def gradient( self, x ):
-        return 2*x -12*(x-2)+4*(x-2)**3
+        return 4*x**3-24*x**2+36*x-6
     def integ( self , x , kT ):
         return np.exp( - self.energy( x )/kT )
     def get_partition_function ( self, kT ):
@@ -52,20 +52,11 @@ class HarmonicRestraint( object ):
     def __init__( self, r0, k ):
         self.r0 = r0
         self.k = k
-    def energy( self, r_vector ):
-        if (isinstance (r_vector, float)) or (r_vector.shape[0]==1):
-            return 0.5 * self.k * ( r_vector - self.r0 )**2
-        else:
-            return 0.5 * self.k * ( np.linalg.norm( r_vector ) - self.r0 )**2
-    def gradient( self, r_vector ):
-        if (isinstance (r_vector, float)) or (r_vector.shape[0]==1):
-            return self.k*(r_vector-self.r0)
-        else:
-            r = np.linalg.norm( r_vector )
-            if r==0:
-                return np.zeros(r_vector.shape[0])
-            else:
-                return self.k * ( r - self.r0 ) * r_vector / r
+    def energy( self, r):
+        return 0.5 * self.k * ( r - self.r0 )**2
+    def gradient( self, r ):
+        return self.k*(r-self.r0)
+
 
 class BrownianIntegrator( object ):
     r"""
@@ -228,7 +219,7 @@ def discretize( x, inner_edges ):
 
 
 def run_st_simulation():
-    N_EXCHANGES=10000
+    N_EXCHANGES=2000
     #checking if directories for writing exist
     directory="ST/"
     if not os.path.exists(directory):
@@ -241,7 +232,7 @@ def run_st_simulation():
 
     dwp = AssymetricDoubleWellPotential()
     Z = dwp.get_partition_function(kT)
-    integrator = BrownianIntegrator( dwp, 0.01, 1.0/kT[initial_t], 1.0, 1.0 )
+    integrator = BrownianIntegrator( dwp, 0.005, 1.0/kT[initial_t], 1.0, 1.0 )
     integrator.set_t_index(initial_t)
     integrator.set_position(initial_x)
     replica = STReplica(Z, integrator, kT )
@@ -290,7 +281,7 @@ def run_us_simulation():
 
     #setting the simulation temperature
     kT = np.array( [1.0] )
-    nsteps=2000
+    nsteps=1000
 
     dwp = AssymetricDoubleWellPotential()
     Z = dwp.get_partition_function(kT)
@@ -303,9 +294,9 @@ def run_us_simulation():
        fh.write("\n")
     fh.close()
 
-    integrator = BrownianIntegrator( dwp, 0.01, 1.0/kT[0], 1.0, 1.0) 
+    integrator = BrownianIntegrator( dwp, 0.005, 1.0/kT[0], 1.0, 1.0) 
     restraints_pos = np.linspace(-0.9,4.7,30)
-    restraint_k = np.ones(30)*120
+    restraint_k = np.ones(30)*90
     #restraints_pos = np.linspace(-1.8,1.8,16)
     n_therm_states = restraints_pos.shape[0]
 
