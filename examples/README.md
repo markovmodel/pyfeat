@@ -8,9 +8,8 @@ free energies and probabilties.
 Content
 -------
 
-* Assymetric double well potential - simulated with 3 different simulation 
-protocols: Temperature replica exchange, Umbrella sampling, Hamiltonian 
-replica exchange
+* Asymetric double well potential - simulated with 2 different simulation 
+protocols: Temperature replica exchange and umbrella sampling
 
 
 How to start the examples
