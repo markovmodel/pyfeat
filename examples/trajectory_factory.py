@@ -270,7 +270,7 @@ def run_st_simulation():
        fh.write( "%4f %+.6e" % ( dwp.bin_centers[c] , p ) )
        fh.write("\n")
     fh.close()
-    print 'I run a simulated tempering simulation'
+
 
 
 def run_us_simulation():
@@ -300,7 +300,7 @@ def run_us_simulation():
     #restraints_pos = np.linspace(-1.8,1.8,16)
     n_therm_states = restraints_pos.shape[0]
 
-    print 'Running a US simulation, this may take a while.....'
+
     restraints = []
     for i in xrange(restraints_pos.shape[0]):
        restraints.append(HarmonicRestraint(restraints_pos[i],restraint_k[i]))
