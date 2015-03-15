@@ -28,7 +28,7 @@ setup(
     author='The pyfeat team',
     author_email='pyfeat@lists.fu-berlin.de',
     license='Simplified BSD License',
-    setup_requires=[ 'numpy>=1.7.1', 'cython>=0.15', 'setuptools>=0.6', 'pytram>=0.1.6' ],
+    setup_requires=[ 'numpy>=1.7.1', 'cython>=0.15', 'setuptools>=0.6', 'pytram>=0.2.0' ],
     tests_require=[ 'numpy>=1.7.1', 'nose>=1.3' ],
     install_requires=[ 'numpy>=1.7.1' ],
     packages=[
@@ -38,5 +38,8 @@ setup(
             'pyfeat.estimator',
             'pyfeat.api'
         ],
-    test_suite='nose.collector'
+    test_suite='nose.collector',    
+    scripts=[
+            'bin/run_pyfeat.py'
+        ]
 )

@@ -42,7 +42,7 @@ if '__main__' == __name__:
     parser = ArgumentParser()
     parser.add_argument(
             'files',
-            help='pytram compatible files for evaluation (trajectory files)',
+            help='pyfeat compatible files for evaluation (trajectory files)',
             nargs='*',
             metavar='FILE'
         )

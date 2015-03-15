@@ -45,12 +45,6 @@ Go to the repository's root directory and type:
 
    python setup.py install [--user]
 
-To build the C-extensions in place, you can also run:
-
-.. code-block:: bash
-
-   python setup.py build_ext --inplace
-   
 For a development installation run:
    
 .. code-block:: bash
