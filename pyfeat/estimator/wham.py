@@ -41,7 +41,7 @@ class WHAM( object ):
         self._pi_K_i = None
         self.citation = [
                 "The weighted histogram analysis method for free-energy calculations on biomolecules;", 
-                "Shankar Kumar, John M. Rosenberg, Djamal Bouzida, Robert H. Swendsen andPeter A. Kollman",
+                "Shankar Kumar, John M. Rosenberg, Djamal Bouzida, Robert H. Swendsen and Peter A. Kollman",
                 "J. Comput. Chem. 13, 1011-1021 (1992)"
             ]
 
