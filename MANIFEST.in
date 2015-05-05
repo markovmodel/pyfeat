@@ -4,3 +4,5 @@ include examples/double_well_example.ipynb
 include examples/trajectory_factory.py
 include examples/README.md
 
+include versioneer.py
+include pyfeat/_version.py
