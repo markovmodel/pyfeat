@@ -1,10 +1,12 @@
 from setuptools import setup
 from os.path import join, dirname
 import numpy as np
+import versioneer
 
 setup(
+    cmdclass=versioneer.get_cmdclass(),
     name='pyfeat',
-    version='0.3.0',
+    version=versioneer.get_version(),
     description='The python free energy analysis toolkit',
     long_description='Commandline toolkit that allows the use of different free energy estimators using a single format',
     classifiers=[
