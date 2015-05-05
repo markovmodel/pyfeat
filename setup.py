@@ -1,6 +1,5 @@
 from setuptools import setup
 from os.path import join, dirname
-import numpy as np
 import versioneer
 
 setup(
@@ -30,7 +29,7 @@ setup(
     author='The pyfeat team',
     author_email='pyfeat@lists.fu-berlin.de',
     license='Simplified BSD License',
-    setup_requires=[ 'numpy>=1.7.1', 'cython>=0.15', 'setuptools>=0.6', 'pytram>=0.2.0' ],
+    setup_requires=[ 'numpy>=1.7.1', 'setuptools>=0.6', 'pytram>=0.2.0' ],
     tests_require=[ 'numpy>=1.7.1', 'nose>=1.3' ],
     install_requires=[ 'numpy>=1.7.1' ],
     packages=[

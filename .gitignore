@@ -3,7 +3,6 @@
 build
 .ipynb_checkpoints
 pyfeat.egg-info
-setup.cfg
 doc/_build
 .eggs/
 *.dat
