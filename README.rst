@@ -2,6 +2,9 @@
 pyfeat
 ******
 
+.. image:: https://travis-ci.org/markovmodel/pyfeat.svg?branch=devel
+    :target: https://travis-ci.org/markovmodel/pyfeat
+
 The python free energy analysis toolkit.
 
 **This code is under very heavy development!**
