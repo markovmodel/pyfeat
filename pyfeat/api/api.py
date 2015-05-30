@@ -123,12 +123,11 @@ def dtram_me( C_K_ij, b_K_i, maxiter = 100, ftol = 1.0e-10, verbose = False ):
         dtram_obj.sc_iteration( maxiter=maxiter, ftol=ftol, verbose=verbose )
     except NotConvergedWarning, e:
         print "# WARNING ##########################################################################"
-        print "# WHAM did not converge within %d steps!" % maxiter
-        print "# The last relative increment was %.6e." % e.relative_increment
+        print "# dTRAM did not converge within %d steps!" % maxiter
+        print "# The last relative increment was %.6e." % e.increment
         print "# You should run the < sc_iteration > method again."
         print "# USE RESULTS WITH CARE ############################################################"
-    finally:
-        return dtram_obj
+    return dtram_obj
 
 
 ########################################################################
