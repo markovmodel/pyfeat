@@ -113,7 +113,7 @@ class WHAM( object ):
     def f_K( self ):
         if self._f_K is None:
             self._f_K = 1.0 / np.dot( self.gamma_K_i, self.pi_i )
-        return -np.log( self._f_K )
+        return np.log(self._f_K)
 
     @property
     def pi_K_i( self ):
