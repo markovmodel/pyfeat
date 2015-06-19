@@ -42,4 +42,14 @@ Added pytram dependency with implementation of DTRAM and XTRAM
 Added example ipython notebook for asymatric double-well potential
 f_K now retrun the same quantities for all estimators
 
+0.3.1
+-----
+
+Fix Sign error in WHAM f_K.
+Fix Not converged warning.
+Added versioneering.
+Fixing typos.
+
+
+
 
