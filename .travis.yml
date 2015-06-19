@@ -1,26 +1,28 @@
 language: python
-
 python:
-  - 2.7
-
+- 2.7
 before_install:
-  - wget http://repo.continuum.io/miniconda/Miniconda-latest-Linux-x86_64.sh -O miniconda.sh
-  - bash miniconda.sh -b
-  - export PATH=$HOME/miniconda/bin:$PATH
-  - conda update --yes conda
-  # The next couple lines fix a crash with multiprocessing on Travis and are not specific to using Miniconda
-  - sudo rm -rf /dev/shm
-  - sudo ln -s /run/shm /dev/shm
-
+- wget http://repo.continuum.io/miniconda/Miniconda-latest-Linux-x86_64.sh -O miniconda.sh
+- bash miniconda.sh -b
+- export PATH=$HOME/miniconda/bin:$PATH
+- conda update --yes conda
+- sudo rm -rf /dev/shm
+- sudo ln -s /run/shm /dev/shm
 install:
-  - conda install --yes python=$TRAVIS_PYTHON_VERSION numpy scipy cython nose
-  - pip install pytram
-  - python setup.py develop
-  - pip install coveralls
-
-# command to run tests
+- conda install --yes python=$TRAVIS_PYTHON_VERSION numpy scipy cython nose
+- pip install pytram
+- python setup.py develop
+- pip install coveralls
 script:
-  - coverage run --source=pyfeat setup.py test
-
+- coverage run --source=pyfeat setup.py test
 after_success:
-  - coveralls
+- coveralls
+deploy:
+  provider: pypi
+  user: pyfeat-user
+  password:
+    secure: henjeFXpv8u7fDzIDOg62eQ6jvfmECD5bKC38Lz1ztVURlKJFIX1yIgALylmaed6jZFf2IA7Kgmv5QeT68bAGuchWE9as2TZnUCsfRDldoEWKu3P0ccNiIyIISFV5PlkB509tmizvTx9dohnXgX8mFHBXx3YYy/Z3nFDLDhbAA8=
+  on:
+    tags: true
+    repo: markovmodel/pyfeat
+    branch: master
