@@ -4,6 +4,11 @@ pyfeat
 
 .. image:: https://travis-ci.org/markovmodel/pyfeat.svg?branch=devel
     :target: https://travis-ci.org/markovmodel/pyfeat
+.. image:: https://coveralls.io/repos/markovmodel/pyfeat/badge.svg?branch=devel
+   :target: https://coveralls.io/r/markovmodel/pyfeat?branch=devel
+.. image:: https://badge.fury.io/py/pyfeat.svg
+   :target: https://pypi.python.org/pypi/pyfeat
+
 
 The python free energy analysis toolkit.
 
