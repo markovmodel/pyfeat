@@ -44,11 +44,16 @@ f_K now retrun the same quantities for all estimators
 
 0.3.1
 -----
-
 Fix Sign error in WHAM f_K.
 Fix Not converged warning.
 Added versioneering.
 Fixing typos.
+
+0.3.2 (beta) *in progress*
+-----
+Fix normailsation in higher thermodynamic states (WHAM).
+Extended the test suite.
+Renaming the *_me API functions to *_from_matrix.
 
 
 
