@@ -9,3 +9,4 @@ doc/_build
 .DS_Store
 *.egg
 dist
+.coverage
