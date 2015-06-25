@@ -78,7 +78,7 @@ class TestThreeStateModel(object):
         """testing the WHAM API"""
         forge = Forge(self.inp, b_K_i=self.b_K_i, verbose=True)
         wham_obj = wham(forge, maxiter=100000, ftol=1.0E-14, verbose=True)
-        maxerr = 1.0E-1
+        maxerr = 5.0E-1
         assert_allclose(wham_obj.f_i, self.f_i, atol=maxerr)
         assert_allclose(wham_obj.pi_i, self.pi_i, atol=maxerr)
         assert_allclose(wham_obj.f_K_i, self.f_K_i, atol=maxerr)
