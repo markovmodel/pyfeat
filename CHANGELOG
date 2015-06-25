@@ -49,12 +49,14 @@ Fix Not converged warning.
 Added versioneering.
 Fixing typos.
 
-DEVEL
+0.3.2
 -----
 Fix normailsation in higher thermodynamic states (WHAM).
 Extended the test suite.
 Renaming the *_me API functions to *_from_matrix.
 
+DEVEL
+-----
 
 
 
