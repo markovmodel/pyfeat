@@ -29,16 +29,21 @@ def wham_from_matrix(N_K_i, b_K_i, maxiter=100, ftol=1.0E-5, verbose=False):
     Parameters
     ----------
     N_K_i : numpy.ndarray(shape=(T, M), dtype=numpy.float64)
-        total number of counts from simulation at T in M discrete Markov state (bin)
+        total number of counts from simulation at T in M discrete Markov 
+        state (bin)
     b_K_i : numpy.ndarray(shape=(T, M), dtype=numpy.float64)
-        reduced bias energies at the T thermodynamic and M discrete Markov states
+        reduced bias energies at the T thermodynamic and M discrete Markov 
+        states
     maxiter : int
-        maximum number of self-consistant iteration steps during the optimisation
+        maximum number of self-consistant iteration steps during the 
+        optimisation
         of the stationary probabilities
     ftol : float (> 0.0)
-        convergence criterion based on the max change in an self-consistent-iteration step
+        convergence criterion based on the max change in an 
+        self-consistent-iteration step
     verbose : boolean
-        writes convergence information to stdout during the self-consistent-iteration cycle
+        writes convergence information to stdout during the 
+        self-consistent-iteration cycle
 
     Returns
     -------
@@ -49,20 +54,20 @@ def wham_from_matrix(N_K_i, b_K_i, maxiter=100, ftol=1.0E-5, verbose=False):
     try:
         wham_obj = WHAM(N_K_i, b_K_i)
     except ExpressionError, e:
-        print "# ERROR ############################################################################"
+        print "# ERROR ########################################################"
         print "# Your input was faulty!"
         print "# The < %s > object is malformed: %s" % (e.expression, e.msg)
-        print "# ABORTING #########################################################################"
+        print "# ABORTING #####################################################"
         raise
     # try to converge the stationary probabilities
     try:
         wham_obj.sc_iteration(maxiter=maxiter, ftol=ftol, verbose=verbose)
     except NotConvergedWarning, e:
-        print "# WARNING ##########################################################################"
+        print "# WARNING ######################################################"
         print "# WHAM did not converge within %d steps!" % maxiter
         print "# The last increment was %.6e." % e.increment
         print "# You should run the < sc_iteration > method again."
-        print "# USE RESULTS WITH CARE ############################################################"
+        print "# USE RESULTS WITH CARE ########################################"
     finally:
         return wham_obj
 
@@ -76,18 +81,25 @@ def wham(forge, maxiter=100, ftol=1.0E-5, verbose=False):
     forge : object
         data forge or container for pyfeat input data
     maxiter : int
-        maximum number of SC iteration steps during the optimisation of the stationary probabilities
+        maximum number of SC iteration steps during the optimisation of the 
+        stationary probabilities
     ftol : float (> 0.0)
-        convergence criterion based on the max change in an self-consistent-iteration step
+        convergence criterion based on the max change in an 
+        self-consistent-iteration step
     verbose : boolean
-        writes convergence information to stdout during the self-consistent-iteration cycle
+        writes convergence information to stdout during the 
+        self-consistent-iteration cycle
 
     Returns
     -------
     wham_obj : object
         WHAM estimator object with optimised unbiased stationary probabilities
     """
-    return wham_from_matrix(forge.N_K_i, forge.b_K_i, maxiter=maxiter, ftol=ftol, verbose=verbose)
+    return wham_from_matrix(forge.N_K_i, 
+                            forge.b_K_i, 
+                            maxiter=maxiter, 
+                            ftol=ftol, 
+                            verbose=verbose)
 
 ########################################################################
 #                                                                      #
@@ -116,20 +128,20 @@ def dtram_from_matrix(C_K_ij, b_K_i, maxiter=100, ftol=1.0e-5, verbose=False):
     try:
         dtram_obj = DTRAM(C_K_ij, b_K_i)
     except ExpressionError, e:
-        print "# ERROR ############################################################################"
+        print "# ERROR ########################################################"
         print "# Your input was faulty!"
         print "# The < %s > object is malformed: %s" % (e.expression, e.msg)
-        print "# ABORTING #########################################################################"
+        print "# ABORTING #####################################################"
         raise
     # try to converge the stationary probabilities
     try:
         dtram_obj.sc_iteration(maxiter=maxiter, ftol=ftol, verbose=verbose)
     except NotConvergedWarning, e:
-        print "# WARNING ##########################################################################"
+        print "# WARNING ######################################################"
         print "# dTRAM did not converge within %d steps!" % maxiter
         print "# The last increment was %.6e." % e.increment
         print "# You should run the < sc_iteration > method again."
-        print "# USE RESULTS WITH CARE ############################################################"
+        print "# USE RESULTS WITH CARE ########################################"
     return dtram_obj
 
 
@@ -148,19 +160,25 @@ def dtram(forge, lag=1,  maxiter=100, ftol=1.0e-5, verbose=False):
     lag : int
         lagtime at which the countmatrix is estimated
     maxiter : int
-        maximum number of SC iteration steps during the optimisation of the stationary probabilities
+        maximum number of SC iteration steps during the optimisation of the 
+        stationary probabilities
     ftol : float (> 0.0)
-        convergence criterion based on the max change in an self-consistent-iteration step
+        convergence criterion based on the max change in an 
+        self-consistent-iteration step
     verbose : boolean
-        writes convergence information to stdout during the self-consistent-iteration cycle
+        writes convergence information to stdout during the 
+        self-consistent-iteration cycle
 
     Returns
     -------
     dtram_obj : object
         dTRAM estimator object with optimised stationary properties
     """
-    return dtram_from_matrix(
-        forge.get_C_K_ij(lag), forge.b_K_i, maxiter=maxiter, ftol=ftol, verbose=verbose)
+    return dtram_from_matrix(forge.get_C_K_ij(lag), 
+                             forge.b_K_i, 
+                             maxiter=maxiter, 
+                             ftol=ftol, 
+                             verbose=verbose)
     
 ########################################################################
 #                                                                      #
@@ -241,7 +259,12 @@ def dtram(forge, lag=1,  maxiter=100, ftol=1.0e-5, verbose=False):
 #                                                                      #
 ########################################################################
 
-def xtram_from_matrix(C_K_ij, b_K_x, T_x, M_x, N_K_i, maxiter=100, ftol=1.0e-5, verbose=False):
+def xtram_from_matrix(C_K_ij,
+                      b_K_x, T_x, 
+                      M_x, N_K_i, 
+                      maxiter=100, 
+                      ftol=1.0e-5, 
+                      verbose=False):
     r"""
     Parameters
     ----------
@@ -267,20 +290,20 @@ def xtram_from_matrix(C_K_ij, b_K_x, T_x, M_x, N_K_i, maxiter=100, ftol=1.0e-5, 
     try:
         xtram_obj = XTRAM(C_K_ij, b_K_x, T_x, M_x, N_K_i)
     except ExpressionError, e:
-        print "# ERROR ############################################################################"
+        print "# ERROR ########################################################"
         print "# Your input was faulty!"
         print "# The < %s > object is malformed: %s" % ( e.expression, e.msg )
-        print "# ABORTING #########################################################################"
+        print "# ABORTING #####################################################"
         raise
     # try to converge the stationary probabilities
     try:
         xtram_obj.sc_iteration(maxiter=maxiter, ftol=ftol, verbose=verbose)
     except NotConvergedWarning, e:
-        print "# WARNING ##########################################################################"
+        print "# WARNING ######################################################"
         print "# xTRAM did not converge within %d steps!" % maxiter
         print "# The last increment was %.6e." % e.increment
         print "# You should run the < sc_iteration > method again."
-        print "# USE RESULTS WITH CARE ############################################################"
+        print "# USE RESULTS WITH CARE ########################################"
     finally:
         return xtram_obj
 
@@ -300,11 +323,14 @@ def xtram(forge, lag=1, maxiter=100, ftol=1.0e-5, verbose=False):
     lag : int
         lagtime at which the countmatrix is estimated
     maxiter : int
-        maximum number of SC iteration steps during the optimisation of the stationary probabilities
+        maximum number of SC iteration steps during the optimisation of the 
+        stationary probabilities
     ftol : float (> 0.0)
-        convergence criterion based on the max change in an self-consistent-iteration step
+        convergence criterion based on the max change in an 
+        self-consistent-iteration step
     verbose : boolean
-        writes convergence information to stdout during the self-consistent-iteration cycle
+        writes convergence information to stdout during the 
+        self-consistent-iteration cycle
 
     Returns
     -------
@@ -347,14 +373,16 @@ def tram():
     
 def convert_data(trajs, b_K_i=None, kT_K=None, kT_target=None):
     r"""
-    API function for creating the data forge object which will then be used for the estimators
+    API function for creating the data forge object which will then be used 
+    for the estimators
 
     Parameters
     ----------
     trajs : list of dictionaries
         simulation trajectories
     b_K_i : numpy.ndarray(shape=(T, M), dtype=numpy.float64)
-        reduced bias energies at the T thermodynamic and M discrete Markov states
+        reduced bias energies at the T thermodynamic and M discrete Markov 
+        states
     kT_K : numpy.nparray(shape=(T,), dtype=numpy.float64)
         list of kT values of each thermodynamic state
     kT_target : int
@@ -374,7 +402,12 @@ def convert_data(trajs, b_K_i=None, kT_K=None, kT_target=None):
 #                                                                      #
 ########################################################################
 
-def read_files(files, b_K_i_file=None, kT_file=None, skiprows=0, maxlength=None, verbose=False):
+def read_files(files, 
+               b_K_i_file=None, 
+               kT_file=None, 
+               skiprows=0, 
+               maxlength=None, 
+               verbose=False):
     r"""
     API function for reading files 
     

@@ -3,7 +3,8 @@ r"""
 dTRAM estimator wrapper
 =======================
 
-.. moduleauthor:: Antonia Mey <antonia.mey@fu-berlin.de>, Christoph Wehmeyer <christoph.wehmeyer@fu-berlin.de>
+.. moduleauthor:: Antonia Mey <antonia.mey@fu-berlin.de>, 
+   Christoph Wehmeyer <christoph.wehmeyer@fu-berlin.de>
 
 """
 
@@ -37,7 +38,8 @@ class DTRAM(object):
         maxiter : int
             maximum number of self-consistent-iteration steps
         ftol : float (> 0.0)
-            convergence criterion based on the max relative change in an self-consistent-iteration step
+            convergence criterion based on the max relative change in an 
+            self-consistent-iteration step
         verbose : boolean
             Be loud and noisy
         """
