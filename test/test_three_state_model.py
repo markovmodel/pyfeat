@@ -77,6 +77,7 @@ class TestThreeStateModel(object):
     def test_wham_api(self):
         """testing the WHAM API"""
         forge = Forge(self.inp, b_K_i=self.b_K_i, verbose=True)
+        wham_obj = wham(forge, maxiter=1, ftol=1.0E-14, verbose=True)
         wham_obj = wham(forge, maxiter=100000, ftol=1.0E-14, verbose=True)
         maxerr = 5.0E-1
         assert_allclose(wham_obj.f_i, self.f_i, atol=maxerr)
@@ -86,6 +87,7 @@ class TestThreeStateModel(object):
     def test_dtram_api(self):
         """testing the dTRAM API"""
         forge = Forge(self.inp, b_K_i=self.b_K_i, verbose=True)
+        dtram_obj = dtram(forge, lag=1, maxiter=1, ftol=1.0E-14, verbose=True)
         dtram_obj = dtram(forge, lag=1, maxiter=100000, ftol=1.0E-14, verbose=True)
         maxerr = 1.0E-1
         assert_allclose(dtram_obj.f_i, self.f_i, atol=maxerr)
@@ -95,6 +97,7 @@ class TestThreeStateModel(object):
     def test_xtram_api(self):
         """testing the xTRAM API"""
         forge = Forge(self.inp, verbose=True)
+        xtram_obj = xtram(forge, lag=1, maxiter=1, ftol=1.0E-13, verbose=True)
         xtram_obj = xtram(forge, lag=1, maxiter=10000, ftol=1.0E-13, verbose=True)
         maxerr = 1.0E-1
         assert_allclose(xtram_obj.f_i, self.f_i, atol=maxerr)
