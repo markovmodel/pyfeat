@@ -4,8 +4,8 @@ r"""
 WHAM estimator module
 =====================
 
-.. moduleauthor:: Antonia Mey <antonia.mey@fu-berlin.de>, 
-   Christoph Wehmeyer <christoph.wehmeyer@fu-berlin.de>
+.. moduleauthor:: Antonia Mey <antonia.mey@fu-berlin.de>
+.. moduleauthor:: Christoph Wehmeyer <christoph.wehmeyer@fu-berlin.de>
 
 """
 
@@ -118,14 +118,14 @@ class WHAM(object):
     @property
     def f_K(self):
         if self._f_K is None:
-            self._f_K = 1.0 / np.dot(self.gamma_K_i, self.pi_i)
+            self._f_K = 1.0/np.dot(self.gamma_K_i, self.pi_i)
         return np.log(self._f_K)
 
     @property
     def pi_K_i(self):
         if self._pi_K_i is None:
             self._pi_K_i = np.exp(self.f_K)[:, np.newaxis]*
-                           self.pi_i[np.newaxis, :]*self.gamma_K_i
+            self.pi_i[np.newaxis, :]*self.gamma_K_i
         return self._pi_K_i
 
     ###########################################################################
@@ -138,7 +138,7 @@ class WHAM(object):
         if b_K_i is None:
             raise ExpressionError("b_K_i", "is None")
         if not isinstance( b_K_i, (np.ndarray,)):
-            raise ExpressionError("b_K_i", "invalid type (%s)" \ 
+            raise ExpressionError("b_K_i", "invalid type (%s)" \
                                   % str(type(b_K_i)))
         if 2 != b_K_i.ndim:
             raise ExpressionError("b_K_i", "invalid number of dimensions (%d)" \
