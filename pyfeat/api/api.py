@@ -15,12 +15,12 @@ from ..reader import Reader
 from ..forge import Forge
 
 
-
 ########################################################################
 #                                                                      #
 #   WHAM API function using the mathematical expressions at input      #
 #                                                                      #
 ########################################################################
+
 
 def wham_from_matrix(N_K_i, b_K_i, maxiter=100, ftol=1.0E-5, verbose=False):
     r"""
@@ -106,6 +106,7 @@ def wham(forge, maxiter=100, ftol=1.0E-5, verbose=False):
 #   dTRAM API function using the mathematical expressions at input     #
 #                                                                      #
 ########################################################################
+
 
 def dtram_from_matrix(C_K_ij, b_K_i, maxiter=100, ftol=1.0e-5, verbose=False):
     r"""
@@ -292,7 +293,7 @@ def xtram_from_matrix(C_K_ij,
     except ExpressionError, e:
         print "# ERROR ########################################################"
         print "# Your input was faulty!"
-        print "# The < %s > object is malformed: %s" % ( e.expression, e.msg )
+        print "# The < %s > object is malformed: %s" % (e.expression, e.msg)
         print "# ABORTING #####################################################"
         raise
     # try to converge the stationary probabilities
@@ -358,9 +359,11 @@ def tram_me():
 
 ########################################################################
 #                                                                      #
-#   TRAM API function                                                 #
+#   TRAM API function                                                  #
 #                                                                      #
 ########################################################################
+
+
 def tram():
     raise NotImplementedError('TRAM API function has not been implemented yet')
 
@@ -402,6 +405,7 @@ def convert_data(trajs, b_K_i=None, kT_K=None, kT_target=None):
 #                                                                      #
 ########################################################################
 
+
 def read_files(files, 
                b_K_i_file=None, 
                kT_file=None, 
@@ -433,4 +437,4 @@ def read_files(files,
     """
     reader = Reader(files, b_K_i_file, kT_file, skiprows, maxlength, verbose)
     return reader 
-    
+

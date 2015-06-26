@@ -36,10 +36,9 @@ class XTRAM(object):
             Number of markov samples in each thermodynamic state
         """
 
-        self._xtram_obj = pt.XTRAM(C_K_ij, b_K_x, T_x, M_x, N_K_i, target = 0)
+        self._xtram_obj = pt.XTRAM(C_K_ij, b_K_x, T_x, M_x, N_K_i, target=target)
         self.n_therm_states = np.shape(N_K_i)[0]
         self.n_markov_states = np.shape(N_K_i)[1]
-
 
     def sc_iteration(self, maxiter=100, ftol=1.0E-5, verbose=False):
         r"""
@@ -99,4 +98,3 @@ class XTRAM(object):
 
     def cite(self, pre=""):
         self._xtram_obj.cite(pre=pre)
-

@@ -88,16 +88,16 @@ class TestThreeStateModel(object):
         forge = Forge(self.inp, b_K_i=self.b_K_i, verbose=True)
         dtram_obj = dtram(forge, lag=1, maxiter=100000, ftol=1.0E-14, verbose=True)
         maxerr = 1.0E-1
-        assert_allclose(dtram_obj.f_i, self.f_i, maxerr)
-        assert_allclose(dtram_obj.pi_i, self.pi_i, maxerr)
-        assert_allclose(dtram_obj.f_K_i, self.f_K_i, maxerr)
-        assert_allclose(dtram_obj.pi_K_i, self.pi_K_i, maxerr)
+        assert_allclose(dtram_obj.f_i, self.f_i, atol=maxerr)
+        assert_allclose(dtram_obj.pi_i, self.pi_i, atol=maxerr)
+        assert_allclose(dtram_obj.f_K_i, self.f_K_i, atol=maxerr)
+        assert_allclose(dtram_obj.pi_K_i, self.pi_K_i, atol=maxerr)
     def test_xtram_api(self):
         """testing the xTRAM API"""
         forge = Forge(self.inp, verbose=True)
         xtram_obj = xtram(forge, lag=1, maxiter=10000, ftol=1.0E-13, verbose=True)
         maxerr = 1.0E-1
-        assert_allclose(xtram_obj.f_i, self.f_i, maxerr)
-        assert_allclose(xtram_obj.pi_i, self.pi_i, maxerr)
-        assert_allclose(xtram_obj.f_K_i, self.f_K_i, maxerr)
-        assert_allclose(xtram_obj.pi_K_i, self.pi_K_i, maxerr)
+        assert_allclose(xtram_obj.f_i, self.f_i, atol=maxerr)
+        assert_allclose(xtram_obj.pi_i, self.pi_i, atol=maxerr)
+        assert_allclose(xtram_obj.f_K_i, self.f_K_i, atol=maxerr)
+        assert_allclose(xtram_obj.pi_K_i, self.pi_K_i, atol=maxerr)
